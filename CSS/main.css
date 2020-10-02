@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+
+:root
+{
+    --Color-1: #0e0e0e;
+    --Color-2: #dc3545;
+    --Color-3:#02111B;
+    --Color-4:#ffb700;
+    --Color-5: whitesmoke;
+    --Color-6: rgb(124, 29, 20);
+}
+
+body{
+    background-color: whitesmoke !important;
+}
+
+/* NAVBAR */
+
+nav.navbar#navBar{
+    background-color: var(--Color-1) !important;
+}
+
+.navbar .navbar-nav li a:hover{
+    color: var(--Color-2) !important;
+}
+
+.navbar .navbar-nav li a:active{
+    color: var(--Color-2) !important;
+}
+
+.navbar .navbar-nav li{
+    padding-right: 10px;
+}
+
+.navbar .navbar-nav li a{
+    color:var(--Color-5) !important;
+    font-family: 'Oswald', sans-serif !important;
+}
+
+.navbar .nav-item .dropdown-menu .dropdown-item{
+    color: black !important;
+}
+
+.navbar .nav-item .dropdown-menu .dropdown-item:active{
+    background-color: gainsboro !important;
+}
+
+.navbar .nav-item .dropdown-menu .dropdown-item:hover{
+    color: var(--Color-2) !important ;
+}
+
+/* SEARCHBAR */
+
+.btn#BTSearch{
+   color: var(--Color-5);
+   font-family: 'Oswald', sans-serif !important;
+}
+
+.btn#BTSearch:hover{
+   color: var(--Color-5);
+   font-family: 'Oswald', sans-serif !important;
+}
+
+#BRSearch{
+    width:500px !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+@media (max-width: 425px){
+    #BRSearch {
+    width:180px !important;
+    }
+
+    #BTSearch {        
+     margin-left: 15px;
+    }
+}
+
+/* CARRUSEL */
+
+.carousel-inner img{
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-80%);
+}
+
+.carousel-caption h1{
+    font-family: 'Anton', sans-serif;
+    text-shadow: 1px 1px 15px #000;
+}
+
+.carousel-caption h3{
+    font-family: 'Roboto', sans-serif ;  
+    text-shadow: 1px 1px 10px #000;
+    padding-bottom: 1rem;
+}
+
+@media (max-width: 768){
+    .carousel-caption {
+        top: 45%;
+    }
+
+    .carousel-caption h1{
+        font-family: 'Anton', sans-serif;
+        color: greenyellow;
+        font-size: 70%;
+        text-shadow: 1px 1px 15px #000;
+    }    
+
+    .carousel-caption h3{
+        font-family: 'Roboto', sans-serif ;  
+        font-size: 140%;
+        text-shadow: 1px 1px 10px #000;
+        padding-bottom: .2rem;
+    }
+
+    .carousel-caption .btn{
+        font-size: 95%;
+        padding: 8px 14px;
+    }
+}
+/* BODY */
+h1#Headers{
+    font-family: 'Anton', sans-serif;
+    color: var(--Color-1);
+    text-shadow: 1px 1px 2px black;
+}
+
+hr.DarkT{
+    border-top: 2px solid black;
+    width: 75%;
+    padding-top: 1rem;
+}
+
+hr.DarkB{
+    border-top: 2px solid black;
+    width: 75%;
+    padding-bottom: 1rem;
+}
+
+hr.Invis{
+    border-top: 2px solid var(--Color-4);
+    width: 75%;
+}
+
+/* CARDS */
+
+.card .card-body h4#Title{
+    font-family: 'Oswald', sans-serif;
+    color: var(--Color-2);
+}
+
+.card .card-body h4#Price{
+    font-family: 'Oswald', sans-serif;
+    color: var(--Color-4);
+}
+
+.card .card-body p{
+    font-family: 'Roboto', sans-serif ;
+}
+
+/* FOOTER */
+
+footer{
+    background-color: #3F3F3F;
+    color: var(--Color-5);
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+hr.Light{
+    border-top: 1px solid var(--Color-5);
+    width: 75%;
+}
+
+hr.Light-100{
+    border-top: 1px solid var(--Color-5);
+    width: 100%;
+}
+
+/* --------------------------------------------------------------------*/
+
+.modal-header#hLogin{
+    background-color: var(--Color-1);
+    color: var(--Color-5);
+    font-family: 'Oswald', sans-serif;
+}
+
+.modal-body label{
+    font-family: 'Oswald', sans-serif;
+}
+
+.modal-body form{
+    font-family: 'Roboto', sans-serif;
+}
+
+.modal-body p{
+    font-family: 'Roboto', sans-serif;
+}
+
+.modal-body span#ClickH{
+    text-decoration: underline;
+    color: var(--Color-1);
+}
+
+.modal-body span#ClickH:hover{
+    text-decoration: underline;
+    color: var(--Color-2);
+    cursor: pointer;
+}
+
+.modal-body button{  
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav-item#pillLog, .nav-item#pillReg{
+    padding-bottom: 1rem;
+}
+
+.nav-item#pillLog .nav-link:not(.active):hover, .nav-item#pillReg .nav-link:not(.active):hover{
+    color: var(--Color-2);
+    background-color: white;
+    font-family: 'Oswald', sans-serif;
+}
+
+.nav-item#pillLog .nav-link:not(.active), .nav-item#pillReg .nav-link:not(.active){
+    color: var(--Color-1);
+    background-color: white;
+    font-family: 'Oswald', sans-serif;
+}
+
+.nav-item#pillLog .nav-link, .nav-item#pillReg .nav-link{
+    background-color: var(--Color-1) ;
+    color: whitesmoke;
+    font-family: 'Oswald', sans-serif;
+}
+
+/* PRODUCT DISPLAY*/
+
+div .row#showH{
+    color: var(--Color-1);
+    font-family: 'Oswald', sans-serif;
+}
+
+.carousel#carouselDisp{
+    padding-top: 1rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+h2#Disp{
+    color: var(--Color-1);
+    font-family: 'Anton', sans-serif;
+    padding-bottom: 1rem;
+}
+
+div#Display h1, h3{
+    font-family: 'Oswald', sans-serif;
+}
+
+div#Display p{
+    font-family: 'Roboto', sans-serif;
+}
+
+h3#Discount{
+    color: var(--Color-2);
+}
+
+span#Envio{
+    font-weight: bold;
+    color: var(--Color-2);
+}
+
+div#Comment h2{
+    color: var(--Color-1);
+    font-family: 'Oswald', sans-serif;
+}
+
+div#Comment h5{
+    font-family: 'Oswald', sans-serif;
+}
+
+div#Redact{
+    font-family: 'Roboto', sans-serif;
+}
