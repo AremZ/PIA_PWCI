@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+
+:root
+{
+    --Color-1: #0e0e0e;
+    --Color-2: #dc3545;
+    --Color-3:#02111B;
+    --Color-4:#ffb700;
+    --Color-5: whitesmoke;
+    --Color-6: rgb(124, 29, 20);
+}
+
+
+/* NAVBAR */
+
+nav.navbar#navBar{
+    background-color: var(--Color-1) !important;
+}
+
+.navbar .navbar-nav li a:hover{
+    color: var(--Color-2) !important;
+}
+
+.navbar .navbar-nav li a:active{
+    color: var(--Color-2) !important;
+}
+
+.navbar .navbar-nav li{
+    padding-right: 10px;
+}
+
+.navbar .navbar-nav li a{
+    color:var(--Color-5) !important;
+    font-family: 'Oswald', sans-serif !important;
+}
+
+.navbar .nav-item .dropdown-menu .dropdown-item{
+    color: black !important;
+}
+
+.navbar .nav-item .dropdown-menu .dropdown-item:active{
+    background-color: gainsboro !important;
+}
+
+.navbar .nav-item .dropdown-menu .dropdown-item:hover{
+    color: var(--Color-2) !important ;
+}
+
+
+.navbar-brand {
+    transform: translateX(-50%);
+    left: 50%;
+    position: absolute;
+  }
+
+.navbar{
+      height: 100px;
+  }
+
+/* LANDING */
+
+h1{
+    color: white;
+    text-align: center;
+    padding: 2em;
+}
+
+#landingContainer{
+    background-color: rgba(0, 0, 0, 0.808) !important;
+    background-image: image('Imagenes/SeamlessControllers.jpg');
+    
+}
+
+.formLogin{
+    text-align:center;
+    border-style: solid;
+    padding-bottom: 1em;
+    overflow: hidden;
+    background-color:whitesmoke;
+    width: 20%;
+    border-radius: 10%;
+    margin: auto;
+}
+
+input[type=button], button {
+    background-color: rgb(129, 0, 0);
+    border: none;
+    color: white;
+    padding: 1em 3em;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    
+  }
+  input[type=text], input[type=password]{
+    border: 3px solid #555;
+    border-radius: 20px;
+    padding-left:15px;
+    padding-right:15px;
+}
+
+footer{
+    height: 100px;
+    background-color: rgba(104, 6, 6, 0.705);
+    color: blanchedalmond;
+    font-size: larger;
+    text-align: center;
+
+}
