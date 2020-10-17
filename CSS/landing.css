@@ -82,7 +82,7 @@ h1{
     padding-bottom: 1em;
     overflow: hidden;
     background-color:whitesmoke;
-    width: 20%;
+    max-width: 500px;
     border-radius: 10%;
     margin: auto;
     margin-bottom: 12em;
