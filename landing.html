@@ -7,6 +7,7 @@
     <title>Nova | Inicio</title>
 
     <link rel="stylesheet" href="CSS/landing.css">
+    <script src="JS/functions.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="Imagenes/Logito.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -25,31 +26,158 @@
     </div>
 </nav>
 
-
-
+<!--
+<button type="button" class="collapsible">Open Collapsible</button>
+<div class="content">
+  <p>Lorem ipsum...</p>
+</div> 
+-->
 <div id=landingContainer>
+    <div class="containerWelc">
     <h1>Bienvenido a NOVA</h1>
+    </div>
 
 
-    <div class="formLogin">
+
+
+    <div class="form">
         <form id="form_login"> 
             <label for="user">Usuario:</label><br>
             <input type="text" id="user" name="user"><br>
             <label for="pass">Contraseña:</label><br>
             <input type="password" id="pass" name="pass"><br><br>
             <!--<input type="submit" value="Ingresar">-->
-            <button>Ingresar</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Recordar
+            </label><br>
+            <button>Ingresar</button><br><br>
+            <span class="psw" onclick="document.getElementById('id02').style.display='block'">¿Olvidó su <a href="#">contraseña?</a></span>
+            
         </form>
         <br>
         <p>¿No tienes una cuenta?</p>
-        <button>Registrarse</button>
+
+        <!-- Button to open the modal login form -->
+        <button onclick="document.getElementById('id01').style.display='block'">Registrarse</button>
+        <!-- The Modal -->
+        <div id="id01" class="modal">
+         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+    
+            <!-- Modal Content -->
+            <form class="modal-content animate" action="/action_page.php" style="width: 500px;">
+                <div class="imgcontainer" style="background-color: rgb(133, 133, 133);">
+                    
+                    <img src="Imagenes/11.jpg" alt="Avatar" class="avatar"><br>
+                    <button style="background: none; border-style: none; background-color: black; padding: 1em;" onclick="imagen()">Añadir imagen</button>
+                    <br><br>
+                </div>
+    
+                <div class="container" style="padding: 2em;">
+                    <label for="uname"><b>Usuario</b></label><br>
+                    <input type="text" placeholder="Ingrese usuario..." name="uname" required>
+                    <br>
+                    <label for="psw"><b>Contraseña: </b></label><br>
+                    <input type="password" placeholder="Ingrese contraseña..." name="psw" required>
+                    <br>
+                    <label for="mail"><b>E-Mail: </b></label><br>
+                    <input type="email" placeholder="Ingrese correo..." name="mail" required><br>
+                    <button type="submit" style="margin: 1em;">Registrarse</button>
+                    
+                </div>
+    
+                
+            </form>
+    
+            
+        </div> 
+
+        <div id="id02" class="modal">
+            <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+       
+               <!-- Modal Content -->
+               <form class="modal-content animate" action="/action_page.php" style="width: 500px;">
+                   
+       
+                   <div class="container" style="padding: 2em;">
+                  
+                       <label for="mail"><b>E-Mail: </b></label><br>
+                       <input type="email" placeholder="Ingrese correo..." name="mail" required><br>
+                       <button type="submit" style="margin: 1em;">Enviar correo</button>
+                       
+                   </div>
+       
+                   
+               </form>
+       
+               
+           </div> 
+
     </div>
 
-    <br><br><br><br>
+    <div class="descripcionNova">
+        <br><br>
+        <div class="container">
+            <div class="card-columns d-flex justify-content-center">
+              <div class="card border-0">
+                <div class="card-block cardNova ">
+                    <img class="card-img-top" src="Imagenes/videogameicon.png" alt="Card image cap">
+                  <h4 class="card-title">Mantén un registro de tus videojuegos</h4>
+                <!--  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
+                </div>
+              </div>
+              <div class="card border-0">
+                <div class="card-block cardNova">
+                    <img class="card-img-top" src="Imagenes/lista.png" alt="Card image cap">
+                  <h4 class="card-title">Crea listas para todos tus items coleccionables</h4>
+                  <!--  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
+                </div>
+              </div>
+            </div>
+        </div>
+        <br><br>   
+    </div>
 </div>
-
 <footer>
-    <p>info</p>
+    <div class="container-fluid padding">
+        <div class="row text-center">
+            <!--
+            <div class="col-lg-4">
+                <img src="Sources/Header/LogoBar.png">
+                <hr class="Light">
+                <p>305-696-0419</p>
+                <p>LAOrnamental@Aol.com</p>
+                <p>3708 NW 82nd Street</p>
+                <p>Miami, Florida</p>
+            </div>
+
+            
+            <div class="col-lg-4">
+                <hr class="Light">
+                <h5>Our hours</h5>
+                <hr class="Light">
+                <p>Monday to Friday: 10am to 7pm</p>
+                <p>Saturday: 10am to 9pm</p>
+                <p>Sunday: Closed</p>
+            </div>
+
+            <div class="col-md-4">
+                <hr class="Light">
+                <h5>Service Area</h5>
+                <hr class="Light">
+                <p>Miami, Florida 33147</p>
+                <p>Laredo, Texas 78040</p>
+                <p>Chicago, Illinois 60007</p>
+                <p>Los Angeles, California 90001</p>
+            </div>-->
+
+            <div class="col-12">
+                <img src="Imagenes/LogoBar.png">
+                <hr class="Light-100" id="last">
+                <h3>&copy; novacoleccionables.com</h3>
+            </div>
+
+        </div>
+    </div>
 </footer>
 
 </body>

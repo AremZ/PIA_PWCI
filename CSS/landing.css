@@ -61,6 +61,7 @@ nav.navbar#navBar{
 
 /* LANDING */
 
+
 h1{
     color: white;
     text-align: center;
@@ -68,12 +69,14 @@ h1{
 }
 
 #landingContainer{
-    background-color: rgba(0, 0, 0, 0.808) !important;
-    background-image: image('Imagenes/SeamlessControllers.jpg');
+    background-color: rgba(0, 0, 0, 0.808);
+    background-image: url('https://cdn4.vectorstock.com/i/1000x1000/04/88/gamepad-silhouette-seamless-background-vector-8530488.jpg');
+    background-size: 50%;
     
 }
 
-.formLogin{
+
+.form{
     text-align:center;
     border-style: solid;
     padding-bottom: 1em;
@@ -82,6 +85,9 @@ h1{
     width: 20%;
     border-radius: 10%;
     margin: auto;
+    margin-bottom: 12em;
+    margin-top: 2em;
+
 }
 
 input[type=button], button {
@@ -94,7 +100,7 @@ input[type=button], button {
     cursor: pointer;
     
   }
-  input[type=text], input[type=password]{
+  input[type=text], input[type=password], input[type=email]{
     border: 3px solid #555;
     border-radius: 20px;
     padding-left:15px;
@@ -102,10 +108,96 @@ input[type=button], button {
 }
 
 footer{
-    height: 100px;
+    height: 200px;
     background-color: rgba(104, 6, 6, 0.705);
-    color: blanchedalmond;
-    font-size: larger;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.descripcionNova{
+
+    background-color: rgb(20, 20, 20);
+    margin: auto;
     text-align: center;
 
 }
+
+.cardNova,.card{
+    background-color: rgb(20, 20, 20);
+    color: whitesmoke;
+    
+}
+
+div>img, div>h4, div>p{
+    max-width: 250px;
+    max-height: 250px;
+    margin: auto;
+    padding: 1em;
+    
+}
+
+.containerWelc{
+    background-color: rgba(0, 0, 0, 0.575);
+}
+
+/* SIGN UP MODAL */
+
+ /* The Modal (background) */
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5px auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    /* Position it in the top right corner outside of the modal */
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  
+  /* Close button on hover */
+  .close:hover,
+  .close:focus {
+    color: red;
+    cursor: pointer;
+  }
+  
+  /* Add Zoom Animation */
+  .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+  
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+  }
+  
+  @keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+  } 
+
+
+/*-------------------*/
