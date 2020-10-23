@@ -50,7 +50,7 @@
             <label>
                 <input type="checkbox" checked="checked" name="remember"> Recordar
             </label><br>
-            <button>Ingresar</button><br><br>
+            <button class="btnR">Ingresar</button><br><br>
             <span class="psw" onclick="document.getElementById('id02').style.display='block'">¿Olvidó su <a href="#">contraseña?</a></span>
             
         </form>
@@ -58,7 +58,7 @@
         <p>¿No tienes una cuenta?</p>
 
         <!-- Button to open the modal login form -->
-        <button onclick="document.getElementById('id01').style.display='block'">Registrarse</button>
+        <button class="btnR" onclick="document.getElementById('id01').style.display='block'">Registrarse</button>
         <!-- The Modal -->
         <div id="id01" class="modal">
          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -68,8 +68,12 @@
                 <div class="imgcontainer" style="background-color: rgb(133, 133, 133);">
                     
                     <img src="Imagenes/11.jpg" alt="Avatar" class="avatar"><br>
-                    <button style="background: none; border-style: none; background-color: black; padding: 1em;" onclick="imagen()">Añadir imagen</button>
-                    <br><br>
+                   
+                    <div class="col-md-6 selectImg">
+                        <label for="agregarFoto" class="custom-file-upload">Escoger avatar</label>                                
+                        <input type="file" id="agregarFoto">
+                    </div>
+                    <br>
                 </div>
     
                 <div class="container" style="padding: 2em;">
@@ -81,7 +85,7 @@
                     <br>
                     <label for="mail"><b>E-Mail: </b></label><br>
                     <input type="email" placeholder="Ingrese correo..." name="mail" required><br>
-                    <button type="submit" style="margin: 1em;">Registrarse</button>
+                    <button class="btnR" type="submit" >Registrarse</button>
                     
                 </div>
     
@@ -102,7 +106,7 @@
                   
                        <label for="mail"><b>E-Mail: </b></label><br>
                        <input type="email" placeholder="Ingrese correo..." name="mail" required><br>
-                       <button type="submit" style="margin: 1em;">Enviar correo</button>
+                       <button class="btnR" type="submit" >Enviar correo</button>
                        
                    </div>
        
