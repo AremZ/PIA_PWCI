@@ -78,215 +78,140 @@ nav.navbar#navBar{
     }
 }
 
-/* CARRUSEL */
-
-.carousel-inner img{
-    width: 100%;
-    height: 100%;
+button{
+    font-family: 'Oswald', sans-serif !important;
 }
 
-.carousel-caption {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-80%);
+button.newList{  
+    margin-top: 2em;
+    margin-right: 3em;
+    float: right;
 }
 
-.carousel-caption h1{
-    font-family: 'Anton', sans-serif;
-    text-shadow: 1px 1px 15px #000;
-}
-
-.carousel-caption h3{
-    font-family: 'Roboto', sans-serif ;  
-    text-shadow: 1px 1px 10px #000;
-    padding-bottom: 1rem;
-}
-
-@media (max-width: 768){
-    .carousel-caption {
-        top: 45%;
-    }
-
-    .carousel-caption h1{
-        font-family: 'Anton', sans-serif;
-        color: greenyellow;
-        font-size: 70%;
-        text-shadow: 1px 1px 15px #000;
-    }    
-
-    .carousel-caption h3{
-        font-family: 'Roboto', sans-serif ;  
-        font-size: 140%;
-        text-shadow: 1px 1px 10px #000;
-        padding-bottom: .2rem;
-    }
-
-    .carousel-caption .btn{
-        font-size: 95%;
-        padding: 8px 14px;
-    }
-}
-/* BODY */
-h1#Headers{
-    font-family: 'Anton', sans-serif;
-    color: var(--Color-1);
-    text-shadow: 1px 1px 2px black;
-}
-
-hr.DarkT{
-    border-top: 2px solid black;
-    width: 75%;
-    padding-top: 1rem;
-}
-
-hr.DarkB{
-    border-top: 2px solid black;
-    width: 75%;
-    padding-bottom: 1rem;
-}
-
-hr.Invis{
-    border-top: 2px solid var(--Color-4);
-    width: 75%;
-}
-
-/* CARDS */
-
-.card .card-body h4#Title{
+h1.topTitle{
     font-family: 'Oswald', sans-serif;
-    color: var(--Color-2);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
-.card .card-body h4#Price{
+hr.topTitleHR{  
+    border: 1px solid black;
+    width: 95%;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.myList{
+    margin-bottom: 1rem;
+}
+
+.myList .buttons{
+    margin-top: 2rem;
+    float: right;
+    margin-bottom: 1rem;
+}
+
+.myList .barBut{
+    margin-left: 1rem;
+}
+
+h2.titleList{
     font-family: 'Oswald', sans-serif;
-    color: var(--Color-4);
+    margin-left: 0;
 }
 
-.card .card-body p{
-    font-family: 'Roboto', sans-serif ;
-}
-
-/* FOOTER */
-
-footer{
-    background-color: #3F3F3F;
-    color: var(--Color-5);
-    padding-top: 2rem;
-    padding-bottom: 1rem;
-}
-
-hr.Light{
-    border-top: 1px solid var(--Color-5);
-    width: 75%;
-}
-
-hr.Light-100{
-    border-top: 1px solid var(--Color-5);
-    width: 100%;
-}
-
-/* --------------------------------------------------------------------*/
-
-.modal-header#hLogin{
-    background-color: var(--Color-1);
-    color: var(--Color-5);
-    font-family: 'Oswald', sans-serif;
-}
-
-.modal-body label{
-    font-family: 'Oswald', sans-serif;
-}
-
-.modal-body form{
+p.descrList{
     font-family: 'Roboto', sans-serif;
 }
 
-.modal-body p{
+h5.onlyText{
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+}
+
+img.imgList{
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--Color-2);
+    box-shadow: 0 0 10px var(--Color-2);
+    border-radius: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    margin-top: 1rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.long-modal{
+    max-width: 70% !important;
+}
+
+#descrList{
+    resize: none;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+div#imgList img, div#imgList img{
+    width: 200px;
+    height: 200px;
+    border: 2px solid var(--Color-2);
+    box-shadow: 0 0 10px var(--Color-2);
+    border-radius: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    margin-top: 1rem;
+    margin-left: 3rem;
+    float: right;
+}
+
+.modal-body#createList label, .modal-body#createList h1{
+    font-family: 'Oswald', sans-serif;
+}
+
+.modal-body#createList form{
     font-family: 'Roboto', sans-serif;
 }
 
-.modal-body span#ClickH{
-    text-decoration: underline;
-    color: var(--Color-1);
+.modal-body#createList form input:focus, .modal-body#createList textarea:focus{
+    border: 1px solid var(--Color-2);
+    box-shadow: 0 0 4px var(--Color-2);
+    outline: none;
 }
 
-.modal-body span#ClickH:hover{
-    text-decoration: underline;
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    font-family: 'Oswald', sans-serif;
+    border: 1px solid var(--Color-2);
     color: var(--Color-2);
+    border-radius: 5px;
+    padding: 6px 12px;
     cursor: pointer;
+    float: left;
+    margin-top: 6rem;
 }
 
-.modal-body button{  
-    font-family: 'Roboto', sans-serif;
+.custom-file-upload:hover {
+    border: 1px solid var(--Color-2);
+    background-color: var(--Color-2);
+    color: var(--TitleFont);
 }
 
-.nav-item#pillLog, .nav-item#pillReg{
-    padding-bottom: 1rem;
+div#StateSel{
+    font-family: 'Oswald', sans-serif !important;
+    margin-top: 4em;
 }
 
-.nav-item#pillLog .nav-link:not(.active):hover, .nav-item#pillReg .nav-link:not(.active):hover{
+select#selectState{
+    font-family: 'Oswald', sans-serif !important;
     color: var(--Color-2);
-    background-color: white;
-    font-family: 'Oswald', sans-serif;
+    border: 1px solid var(--Color-2);
 }
 
-.nav-item#pillLog .nav-link:not(.active), .nav-item#pillReg .nav-link:not(.active){
-    color: var(--Color-1);
-    background-color: white;
-    font-family: 'Oswald', sans-serif;
-}
-
-.nav-item#pillLog .nav-link, .nav-item#pillReg .nav-link{
-    background-color: var(--Color-1) ;
-    color: whitesmoke;
-    font-family: 'Oswald', sans-serif;
-}
-
-/* PRODUCT DISPLAY*/
-
-div .row#showH{
-    color: var(--Color-1);
-    font-family: 'Oswald', sans-serif;
-}
-
-.carousel#carouselDisp{
-    padding-top: 1rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
-}
-
-h2#Disp{
-    color: var(--Color-1);
-    font-family: 'Anton', sans-serif;
-    padding-bottom: 1rem;
-}
-
-div#Display h1, h3{
-    font-family: 'Oswald', sans-serif;
-}
-
-div#Display p{
-    font-family: 'Roboto', sans-serif;
-}
-
-h3#Discount{
-    color: var(--Color-2);
-}
-
-span#Envio{
-    font-weight: bold;
-    color: var(--Color-2);
-}
-
-div#Comment h2{
-    color: var(--Color-1);
-    font-family: 'Oswald', sans-serif;
-}
-
-div#Comment h5{
-    font-family: 'Oswald', sans-serif;
-}
-
-div#Redact{
-    font-family: 'Roboto', sans-serif;
+select#selectState:focus{
+    box-shadow: 0 0 4px var(--Color-2);
 }

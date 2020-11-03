@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+
+:root
+{
+    --NavBar: #000000;
+    --Color-2: #dc3545;
+    --Color-3:#02111B;
+    --Color-4:#ffb700;
+    --Color-5: #6eb65f;
+    --TitleFont: whitesmoke;
+    --Color-6: rgb(124, 29, 20);
+}
+
+body{
+    background-color: whitesmoke !important;
+    overflow-x: hidden;
+}
+
+/* --------------- Header --------------- */
+
+nav.navbar#navBar, nav.navbar#navBarSecciones{
+    background-color: var(--NavBar) !important;
+}
+
+nav.navbar#navBarSecciones{
+    height: 40px;
+}
+
+.navbar .navbar-nav li a:hover{
+    color: var(--Color-2) !important;
+}
+
+.navbar .navbar-nav li a:active{
+    color: var(--Color-2) !important;
+}
+
+.navbar .navbar-nav li{
+    padding-right: 10px;
+}
+
+.navbar .navbar-nav li a{
+    color:var(--TitleFont) !important;
+    font-family: 'Oswald', sans-serif !important;
+}
+
+.navbar .nav-item .dropdown-menu .dropdown-item{
+    color: black !important;
+}
+
+.navbar .nav-item .dropdown-menu .dropdown-item:active{
+    background-color: gainsboro !important;
+}
+
+.navbar .nav-item .dropdown-menu .dropdown-item:hover{
+    color: var(--Color-2) !important ;
+}
+
+/* Searchbar */
+
+.btn#BTSearch{
+   color: var(--TitleFont);
+   font-family: 'Oswald', sans-serif !important;
+}
+
+.btn#BTSearch:hover{
+   color: var(--TitleFont);
+   font-family: 'Oswald', sans-serif !important;
+}
+
+#BRSearch{
+    width:500px !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+#BRSearch:focus{
+    border: 1px solid var(--Color-2);
+    box-shadow: 0 0 5px var(--Color-2);
+}
+
+@media (max-width: 425px){
+    #BRSearch {
+    width:180px !important;
+    }
+
+    #BTSearch {        
+     margin-left: 15px;
+    }
+}
+
+/* --------------- Modal Login --------------- */
+
+
+.modal-body button{   
+    font-family: 'Oswald', sans-serif !important;
+    margin-right: .5em;
+}
+
+.error{
+    border: 1px solid var(--Color-2);
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--Color-2);
+}
+
+
+/* --------------- Footer --------------- */
+
+footer{
+    background-color: var(--NavBar);
+    color: var(--TitleFont);
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+hr.Light{
+    border-top: 1px solid var(--TitleFont);
+    width: 75%;
+}
+
+hr.Light-100{
+    border-top: 1px solid var(--TitleFont);
+    width: 100%;
+}
+
+
+/*------LISTA POPULARES-------*/
+
+
+
+div.tarjetaPrincAside{
+    
+    background-color: rgb(221, 219, 219);
+    color: white;
+    max-width: 540px;
+}
+.listaPopu{
+    padding: 1em;
+    color: black;
+}
+#tituloPopulares{
+    background-color: rgba(0, 0, 0, 0.753);
+    padding: 1em;
+    text-align: center;
+}
+
+.tarjetaSecund{
+    margin-left: 1em;
+    margin-top: 1em;
+    max-width: 200px;
+}
+.img-popular{
+    max-width: 150px;
+}

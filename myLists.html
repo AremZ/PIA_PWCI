@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova | Mis Listas</title>
+
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/generales.css">
+    <link rel="shortcut icon" type="image/x-icon" href="Imagenes/LogoPag.png" />
+    <!--<script src="JS/functions.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <script>
+        $(document).ready(function(){
+            
+        });
+    </script>
+</head>
+
+<body>
+
+    <!------ Barra de Navegacion & Searchbar ------>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navBar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="main.html"><img src="Imagenes/Header/LogoBar.png"></a>
+            <button class="navbar-toggler bg-dangerf" type="button" data-toggle="collapse" data-target="#navBarColl">
+                <span class="navbar-toggler-icon"></span>
+            </button>           
+            <div class="collapse navbar-collapse" id="navBarColl">
+                <ul class="navbar-nav ml-auto">
+                    <li>
+                        <form class="form-inline my-2 my-lg-0" method="GET" action="searchResult.html">
+                            <input class="form-control mr-sm-2" placeholder="Buscar..." aria-label="Buscar"
+                                id="BRSearch">
+                            <button class="btn btn-outline-danger" type="submit" id="BTSearch">Buscar</button>
+                        </form>
+                    </li>                  
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown" id="btnProfile">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMA" role="button"
+                            data-toggle="dropdown">Mi Cuenta</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMA">
+                            <a class="dropdown-item" href="profile.html">Mi Perfil</a>
+                            <a class="dropdown-item" href="newsReportero.html">Mis Listas</a>
+                            <a class="dropdown-item" onclick="cerrarSesion()">Cerrar Sesion</a>
+                        </div>
+                    </li>         
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid padding">
+        <div class="row">
+            <div class="col-lg-10">
+                <h1 class="topTitle">Mis Listas</h1>
+            </div>
+            <div class="col-lg-2">
+                <button class="btn btn-outline-danger newList" data-toggle="modal" data-target="#modNewList"
+                onclick=""><i class="fa fa-plus-circle"></i> Crear nueva lista</button>
+            </div>
+        </div>
+        <hr class="topTitleHR">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card myList">
+                    <div class="row no-gutters">
+
+                        <div class="col-md-2">
+                            <img class="card-img imgList" src="Imagenes/DisplayDGP1.png">
+                        </div>
+    
+                        <div class="col-md-10">
+                            <div class="card-body">
+                                <h2 class="col-md-12 titleList">Titulo de la lista :)</h2>
+                                <p class="descrList">DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA 
+                                    DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA 
+                                    DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA ...</p>
+                                <div class="buttons">
+                                    <button class="btn btn-outline-danger barBut"  data-toggle="modal" data-target="#editorNoticia"
+                                    type="submit" id="btnSeeList"><i class="fa fa-eye"></i> Ver mi lista</button>
+                                    <button class="btn btn-outline-danger barBut" data-toggle="modal" data-target="#confirmDeleteList"
+                                    type="submit" id="btnDeleteList"><i class="fa fa-trash"></i> Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="card myList">
+                    <div class="row no-gutters">
+
+                        <div class="col-md-2">
+                            <img class="card-img imgList" src="Imagenes/DisplayDGP1.png">
+                        </div>
+    
+                        <div class="col-md-10">
+                            <div class="card-body">
+                                <h2 class="col-md-12 titleList">Titulo de la lista :)</h2>
+                                <p class="descrList">DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA 
+                                    DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA 
+                                    DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA ...</p>
+                                <div class="buttons">
+                                    <button class="btn btn-outline-danger barBut" data-toggle="modal" data-target="#editorNoticia"
+                                    type="submit" id="btnSeeList"><i class="fa fa-eye"></i> Ver mi lista</button>
+                                    <button class="btn btn-outline-danger barBut" data-toggle="modal" data-target="#confirmDeleteList"
+                                    type="submit" id="btnDeleteList"><i class="fa fa-trash"></i> Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="card myList">
+                    <div class="row no-gutters">
+
+                        <div class="col-md-2">
+                            <img class="card-img imgList" src="Imagenes/DisplayDGP1.png">
+                        </div>
+    
+                        <div class="col-md-10">
+                            <div class="card-body">
+                                <h2 class="col-md-12 titleList">Titulo de la lista :)</h2>
+                                <p class="descrList">DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA 
+                                    DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA 
+                                    DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA ...</p>
+                                <div class="buttons">
+                                    <button class="btn btn-outline-danger barBut"  data-toggle="modal" data-target="#editorNoticia"
+                                    type="submit" id="btnSeeList"><i class="fa fa-eye"></i> Ver mi lista</button>
+                                    <button class="btn btn-outline-danger barBut" data-toggle="modal" data-target="#confirmDeleteList"
+                                    type="submit" id="btnDeleteList"><i class="fa fa-trash"></i> Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        <!------ Registro de Usuarios ------>
+        <div id="modNewList" class="modal fade">
+            <div class="modal-dialog long-modal">
+    
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" id="hLogin">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div id="createList" class="modal-body">
+                        <div>
+                            <h1 id="titleAdmin">Nueva lista</h1>
+                            <hr>
+                        </div>
+                       <form action="/action_page.php">
+                           <div class="row">
+                               <div class="col-md-1"></div>
+                               <div class="col-md-10">
+                                   <div class="row">
+                                       <div class="col-md-12 form-group">
+                                           <label for="nameList">Nombre de la lista:</label>
+                                           <div id="nameContainerList">
+                                             <input type="text" class="form-control" id="nameList" onfocus="">
+                                           </div>
+                                       </div>
+                                       <div class="col-md-12 form-group">
+                                           <label for="descrListxt">Descripcion:</label>
+                                           <div>
+                                               <textarea name="descrListxt" id="descrList" class="col-md-12" rows="4" ></textarea>
+                                           </div>
+                                       </div>
+                                       <div class="col-md-4 form-group" id="imgList">
+                                           <img src="Imagenes/DisplayDGP1.png">
+                                       </div>
+                                       <div class="col-md-4 form-group">
+                                           <label for="addFotoList" class="custom-file-upload">Agregar una foto de portada...</label>                                
+                                           <input type="file" id="addFotoList">
+                                       </div>
+                                       <div class="col-md-4 form-group" id="StateSel">
+                                        <label for="selectState">Elija la privacidad de su lista</label>                                
+                                        <select class="form-control" id="selectState">
+                                            <option>Pública</option>
+                                            <option>Privada</option>
+                                        </select>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-md-1"></div>
+                           </div>
+                       </form>
+                       <hr>
+                       <button type="button" class="btn btn-outline-danger" 
+                           style="float:right" id="cancelList" data-toggle="modal" data-target="#modRegister"><i class="fa fa-times"></i> Cancelar
+                       </button>
+                       <button type="button" class="btn btn-outline-danger" 
+                           style="float:right" onclick="" id="registerList"><i class="fa fa-check"></i> Crear
+                       </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div id="confirmDeleteList" class="modal fade">
+            <div class="modal-dialog">
+    
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+    
+                        <h5 class="onlyText">¿Está seguro que desea eliminar su lista?</h5>
+                    
+                        <hr>
+                        <button type="button" class="btn btn-outline-danger" style="float:left" id="btnConfirmDelList"
+                        data-toggle="modal" data-target="#confirmDeleteList"></a><i class="fa fa-fire">                        
+                        </i> Confirmar</button>
+    
+                        <button type="button" class="btn btn-outline-danger" 
+                            style="float:right" id="btnCancelList" data-toggle="modal" data-target="#confirmDeleteList"><i class="fa fa-times"></i> Cancelar</button>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!------ Footer ------>
+    <footer>
+        <div class="container-fluid padding">
+            <div class="row text-center">
+                <div class="col-12">
+                    <img src="Imagenes/Header/LogoBar.png">
+                    <hr class="Light-100" id="last">
+                    <h5>&copy; novalists.com</h5>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
