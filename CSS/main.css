@@ -10,6 +10,7 @@
     --Color-4:#ffb700;
     --Color-5: whitesmoke;
     --Color-6: rgb(124, 29, 20);
+    --BorderCSS: #ced4da;
 }
 
 body{
@@ -149,7 +150,7 @@ img.imgList{
 
 #descrList{
     resize: none;
-    border: 1px solid #ced4da;
+    border: 1px solid var(--BorderCSS);
     border-radius: 5px;
 }
 
