@@ -85,7 +85,13 @@ button{
 
 button.newList{  
     margin-top: 2em;
-    margin-right: 3em;
+    float: right;
+    width: 100%;
+}
+
+button.editList, button.newObject, button.deleteList{
+    margin-top: 3em;
+    margin-right: 1em;
     float: right;
 }
 
@@ -154,7 +160,7 @@ img.imgList{
     border-radius: 5px;
 }
 
-div#imgList img, div#imgList img{
+div#imgList img, div#imgObj img{
     width: 200px;
     height: 200px;
     border: 2px solid var(--Color-2);
@@ -167,15 +173,15 @@ div#imgList img, div#imgList img{
     float: right;
 }
 
-.modal-body#createList label, .modal-body#createList h1{
+.modal-body#createList label, .modal-body#createList h1, .modal-body#createObj label, .modal-body#createObj h1{
     font-family: 'Oswald', sans-serif;
 }
 
-.modal-body#createList form{
+.modal-body#createList form, .modal-body#createObj form{
     font-family: 'Roboto', sans-serif;
 }
 
-.modal-body#createList form input:focus, .modal-body#createList textarea:focus{
+.modal-body#createList form input:focus, .modal-body#createList textarea:focus, .modal-body#createObj form input:focus, .modal-body#createObj textarea:focus{
     border: 1px solid var(--Color-2);
     box-shadow: 0 0 4px var(--Color-2);
     outline: none;
@@ -216,3 +222,62 @@ select#selectState{
 select#selectState:focus{
     box-shadow: 0 0 4px var(--Color-2);
 }
+
+p.displayDescrList{
+    font-family: 'Roboto', sans-serif;
+}
+
+.titleObject{
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+}
+
+.descrObject{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+.bodyTarjeta{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.card-obj{
+    margin-bottom: 2em;
+}
+
+.barButObj{
+    width: 100%;
+    margin-top: 5px;
+}
+
+div img.imgObject{
+    width: 200px;
+    height: 200px;
+    border: 2px solid var(--Color-2);
+    box-shadow: 0 0 20px var(--Color-2);
+    border-radius: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    margin-top: 1rem;
+    margin-left: 3rem;
+}
+
+h1.titleLista{
+    font-family: 'Oswald', sans-serif;
+    margin-top: 2rem;
+}
+
+div img.imgCover{
+    width: 150px;
+    height: 150px;
+    border: 2px solid var(--Color-2);
+    box-shadow: 0 0 20px var(--Color-2);
+    border-radius: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+}
+
