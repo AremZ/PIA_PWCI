@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/generales.css">
+    <script src="JS/functions.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="Imagenes/LogoPag.png" />
     <!--<script src="JS/functions.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -229,7 +230,7 @@
                     </div>
                     <div id="createList" class="modal-body">
                         <div>
-                            <h1 id="titleAdmin">Nueva lista</h1>
+                            <h1 id="titleAdmin">Editar lista</h1>
                             <hr>
                         </div>
                        <form action="/action_page.php">
@@ -240,13 +241,13 @@
                                        <div class="col-md-12 form-group">
                                            <label for="nameList">Nombre de la lista:</label>
                                            <div id="nameContainerList">
-                                             <input type="text" class="form-control" id="nameList" onfocus="">
+                                             <input type="text" class="form-control" id="nameList" onfocus="limpiarCampo(0)">
                                            </div>
                                        </div>
                                        <div class="col-md-12 form-group">
                                            <label for="descrListxt">Descripcion:</label>
-                                           <div>
-                                               <textarea name="descrListxt" id="descrList" class="col-md-12" rows="4" ></textarea>
+                                           <div id="descrContainerList">
+                                               <textarea name="descrListxt" id="descrList" class="col-md-12" onfocus="limpiarCampo(0)"></textarea>
                                            </div>
                                        </div>
                                        <div class="col-md-4 form-group" id="imgList">
@@ -272,8 +273,9 @@
                        <button type="button" class="btn btn-outline-danger" 
                            style="float:right" id="cancelsaveList" data-toggle="modal" data-target="#modEditList"><i class="fa fa-times"></i> Cancelar
                        </button>
+                       <!--data-toggle="modal"-->
                        <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" onclick="" id="saveList" data-toggle="modal" data-target="#modEditList"><i class="fa fa-floppy-o"></i> Guardar cambios
+                           style="float:right" onclick="validateList(0)" id="saveList"  data-target="#modEditList"><i class="fa fa-floppy-o"></i> Guardar cambios
                        </button>
                     </div>
                 </div>
@@ -300,15 +302,15 @@
                                <div class="col-md-10">
                                    <div class="row">
                                        <div class="col-md-12 form-group">
-                                           <label for="nameObj">Nombre de la lista:</label>
+                                           <label for="nameObj">Nombre de objeto:</label>
                                            <div id="nameContainerObj">
-                                             <input type="text" class="form-control" id="nameObj" onfocus="">
+                                             <input type="text" class="form-control" id="nameObj" onfocus="limpiarCampo(1)">
                                            </div>
                                        </div>
                                        <div class="col-md-12 form-group">
                                            <label for="descrObjtxt">Descripcion:</label>
-                                           <div>
-                                               <textarea name="descrObjtxt" id="descrObj" class="col-md-12" rows="4" ></textarea>
+                                           <div id="descrContainerObj">
+                                               <textarea name="descrObjtxt" id="descrObj" class="col-md-12" rows="4" onfocus="limpiarCampo(1)"></textarea>
                                            </div>
                                        </div>
                                        <div class="col-md-6 form-group" id="imgObj">
@@ -327,8 +329,9 @@
                        <button type="button" class="btn btn-outline-danger" 
                            style="float:right" id="cancelsaveObj" data-toggle="modal" data-target="#modNewObj"><i class="fa fa-times"></i> Cancelar
                        </button>
+                       <!-- data-toggle="modal"-->
                        <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" onclick="" id="saveObj" data-toggle="modal" data-target="#modNewObj"><i class="fa fa-check"></i> Crear
+                           style="float:right" onclick="validateList(1)" id="saveObj" data-target="#modNewObj"><i class="fa fa-check"></i> Crear
                        </button>
                     </div>
                 </div>

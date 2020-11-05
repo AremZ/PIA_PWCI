@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/generales.css">
+    <script src="JS/functions.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="Imagenes/LogoPag.png" />
     <!--<script src="JS/functions.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -179,13 +180,13 @@
                                        <div class="col-md-12 form-group">
                                            <label for="nameList">Nombre de la lista:</label>
                                            <div id="nameContainerList">
-                                             <input type="text" class="form-control" id="nameList" onfocus="">
+                                             <input type="text" class="form-control" id="nameList" onfocus="limpiarCampo(0)" >
                                            </div>
                                        </div>
                                        <div class="col-md-12 form-group">
                                            <label for="descrListxt">Descripcion:</label>
-                                           <div>
-                                               <textarea name="descrListxt" id="descrList" class="col-md-12" rows="4" ></textarea>
+                                           <div id="descrContainerList">
+                                               <textarea name="descrListxt" id="descrList" class="col-md-12" rows="4" onfocus="limpiarCampo(0)"></textarea>
                                            </div>
                                        </div>
                                        <div class="col-md-4 form-group" id="imgList">
@@ -212,7 +213,7 @@
                            style="float:right" id="cancelList" data-toggle="modal" data-target="#modNewList"><i class="fa fa-times"></i> Cancelar
                        </button>
                        <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" onclick="" id="registerList" data-toggle="modal" data-target="#modNewList"><i class="fa fa-check"></i> Crear
+                           style="float:right" id="registerList"  data-target="#modNewList" onclick="validateList(0)"><i class="fa fa-check"></i> Crear
                        </button>
                     </div>
                 </div>

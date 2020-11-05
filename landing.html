@@ -36,22 +36,18 @@
     <div class="containerWelc">
     <h1>Bienvenido a NOVA</h1>
     </div>
-
-
-
-
     <div class="form">
-        <form id="form_login"> 
+        <form id="form_login" > 
             <label for="user">Usuario:</label><br>
-            <input type="text" id="user" name="user"><br>
+            <input type="text" id="user" name="user" required placeholder="Ingrese usuario..."  ><br>
             <label for="pass">Contraseña:</label><br>
-            <input type="password" id="pass" name="pass"><br><br>
+            <input type="password" id="pass" name="pass" required placeholder="Ingrese contraseña..." minlength="10"><br><br>
             <!--<input type="submit" value="Ingresar">-->
-            <label>
+            <!--<label>
                 <input type="checkbox" checked="checked" name="remember"> Recordar
-            </label><br>
-            <button class="btnR">Ingresar</button><br><br>
-            <span class="psw" onclick="document.getElementById('id02').style.display='block'">¿Olvidó su <a href="#">contraseña?</a></span>
+            </label><br>-->
+            <button class="btnR" onclick="validateLogin()" >Ingresar</button><br><br>
+            <!--<span class="psw" onclick="document.getElementById('id02').style.display='block'">¿Olvidó su <a href="#">contraseña?</a></span>-->
             
         </form>
         <br>
@@ -81,11 +77,11 @@
                     <input type="text" placeholder="Ingrese usuario..." name="uname" required>
                     <br>
                     <label for="psw"><b>Contraseña: </b></label><br>
-                    <input type="password" placeholder="Ingrese contraseña..." name="psw" required>
+                    <input type="password" placeholder="Ingrese contraseña..." name="psw" required minlength="10">
                     <br>
                     <label for="mail"><b>E-Mail: </b></label><br>
                     <input type="email" placeholder="Ingrese correo..." name="mail" required><br>
-                    <button class="btnR" type="submit" >Registrarse</button>
+                    <button class="btnR" onclick="validateLogin()">Registrarse</button>
                     
                 </div>
     
