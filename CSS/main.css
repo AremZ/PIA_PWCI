@@ -108,17 +108,17 @@ hr.topTitleHR{
     margin-bottom: 1rem;
 }
 
-.myList{
+.myList, .userList{
     margin-bottom: 1rem;
 }
 
-.myList .buttons{
+.myList .buttons, .userList .buttons{
     margin-top: 2rem;
     float: right;
     margin-bottom: 1rem;
 }
 
-.myList .barBut{
+.myList .barBut, .userList .barBut{
     margin-left: 1rem;
 }
 
@@ -281,3 +281,95 @@ div img.imgCover{
     margin-left: 3rem;
 }
 
+#datosPerfil{
+    font-family: 'Oswald', sans-serif;
+    text-align: left;
+    color: var(--NavBar);
+    margin-top: 1rem;
+}
+
+#listasPerfil{
+    font-family: 'Oswald', sans-serif;
+    text-align: left;
+    color: var(--NavBar);
+    margin-top: 2rem;
+}
+
+hr.topProfile{
+    border: 1px solid black;
+    width: 95%;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+
+hr.imgProfile{
+    border: 1px solid black;
+    width: 80%;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+div.container-datos label{
+    font-family: 'Oswald', sans-serif;
+}
+
+div.container-datos input{
+    font-family: 'Roboto', sans-serif;
+}
+
+div.container-datos input:focus{
+    border: 1px solid var(--Color-2);
+    box-shadow: 0 0 4px var(--Color-2);
+}
+
+div#displaypfp img{
+    width: 200px;
+    height: 200px;
+    border: 2px solid var(--Color-2);
+    box-shadow: 0 0 20px var(--Color-2);
+    border-radius: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    margin-top: 1rem;
+    margin-left: 3rem;
+}
+
+.custom-file-upload-pfp {
+    font-family: 'Oswald', sans-serif;
+    border: 1px solid var(--Color-2);
+    color: var(--Color-2);
+    border-radius: 5px;
+    padding: 6px 62px;
+    cursor: pointer;
+}
+
+.custom-file-upload-pfp:hover {
+    border: 1px solid var(--Color-2);
+    background-color: var(--Color-2);
+    color: var(--TitleFont);
+}
+
+
+button.btnBarProfile{
+    font-family: 'Oswald', sans-serif;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+button.btnBarData{
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    float: right;
+}
+
+button.btnBarData#btnModDat{
+    float: left;
+    margin-left: 0;
+}
+
+#confirmDelete h5{
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+}
