@@ -227,9 +227,15 @@ p.displayDescrList{
     font-family: 'Roboto', sans-serif;
 }
 
-.titleObject{
+.titleObject, .titleUser{
     font-family: 'Oswald', sans-serif;
     font-size: 24px;
+}
+ .titleUser{
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 2em;
+    font-size: 15px;
 }
 
 .descrObject{
@@ -242,9 +248,10 @@ p.displayDescrList{
     padding-right: 1rem;
 }
 
-.card-obj{
+.card-obj, .card-user{
     margin-bottom: 2em;
 }
+
 
 .barButObj{
     width: 100%;
@@ -261,6 +268,18 @@ div img.imgObject{
     overflow: hidden;
     margin-top: 1rem;
     margin-left: 3rem;
+}
+
+div img.imgUserSearch{
+    width: 100px;
+    height: 100px;
+    border: 2px solid var(--Color-2);
+    box-shadow: 0 0 20px var(--Color-2);
+    border-radius: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    margin: 1rem;
+    margin-left: 2em;
 }
 
 h1.titleLista{
