@@ -1,0 +1,24 @@
+{
+  "name": "pia_pwci",
+  "version": "1.0.0",
+  "description": "proyecto de pwci",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AremZ/PIA_PWCI.git"
+  },
+  "author": "YGV, AR",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AremZ/PIA_PWCI/issues"
+  },
+  "homepage": "https://github.com/AremZ/PIA_PWCI#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
+}

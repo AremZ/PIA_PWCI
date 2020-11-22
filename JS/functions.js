@@ -3,7 +3,7 @@ function validateLogin(){
     
     document.getElementById("user").value="";
     document.getElementById("pass").value="";
-    window.location.replace("http://127.0.0.1:5500/myLists.html");
+   // window.location.replace("http://127.0.0.1:5500/myLists.html");
 
 }
 
