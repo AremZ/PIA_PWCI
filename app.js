@@ -56,17 +56,17 @@ app.post("/loginUser", (req,res)=>{
 
    // const sql = "SELECT id_usuario,nombre_Usuario from usuarios where nombre_Usuario='"+user+"' AND password_Usuario='"+pass+"';";
 
-    const sql = "SELECT id_usuario,nombre_Usuario from usuarios where (nombre_Usuario='"+user+"' AND password_Usuario='"+pass+"') OR (correo_Usuario='"+user+"' AND password_Usuario='"+pass+"');";
+    const sql = "SELECT id_usuario from usuarios where (nombre_Usuario='"+user+"' AND password_Usuario='"+pass+"') OR (correo_Usuario='"+user+"' AND password_Usuario='"+pass+"');";
 
 
     connection.query(sql, (err, results)=>{
 
        if(err)throw err;
        if(results.length>0){
-           res.send("Puede acceder.");
+           res.send(results);
        }
        else{
-           res.send("Not results");
+           res.send("0");
        }
     });
 
@@ -87,10 +87,10 @@ app.post("/registroUser", (req,res)=>{
        if(err)  throw err;
        
        if(results.affectedRows>0){
-        res.send(results);
+        res.send("1");
         }
     else{
-        res.send("No results");
+        res.send("0");
     }
     });
 

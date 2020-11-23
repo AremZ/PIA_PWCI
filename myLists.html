@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/generales.css">
     <script src="JS/functions.js"></script>
+    <script src="JS/dataInteraction.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="Imagenes/LogoPag.png" />
     <!--<script src="JS/functions.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -21,7 +22,7 @@
 
     <script>
         $(document).ready(function(){
-            
+            getLogged();
         });
     </script>
 </head>
@@ -54,7 +55,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMA">
                             <a class="dropdown-item" href="profile.html">Mi Perfil</a>
                             <a class="dropdown-item" href="myLists.html">Mis Listas</a>
-                            <a class="dropdown-item" href="landing.html" >Cerrar Sesion</a>
+                            <a class="dropdown-item" href="landing.html" onclick="logOut()" >Cerrar Sesion</a>
                         </div>
                     </li>         
                 </ul>
