@@ -29,7 +29,7 @@ req.onreadystatechange=function(data){
 req.send();
 }
 
-
+var livePort = '5500'
 
 function signupUser(){
     let signupForm=document.querySelector('form#formSignUp');
@@ -37,7 +37,13 @@ function signupUser(){
     var user=signupForm.uname.value;
     var mail=signupForm.mail.value;
     var pass=signupForm.psw.value;
-    var typeC=2;
+    var checkPriv=signupForm.private.checked;
+    var checkPub=signupForm.public.checked;
+
+    if (checkPriv)
+        var typeC=1;
+    else if (checkPub) 
+        var typeC=2;
 
 
     if(user.length>3&&pass.length>7&&mail.length>5){
@@ -49,9 +55,11 @@ function signupUser(){
         if(req.readyState==4&&req.status==200){
         var data=req.responseText;
         
-        if (data=="1")
+        if (data=="1") {
           //window.location.replace("http://127.0.0.1:5501/myLists.html");
-          alert("¡Registro exitoso! Por favor inicia sesión.")
+          alert("¡Registro exitoso! Por favor inicia sesión.");
+          document.getElementById('id01').style.display='none';
+        }
         else
           alert("Usuario o correo ya registrado.")
         }
@@ -89,7 +97,7 @@ function signInUser(){
 
         if (id!=0){
             sessionStorage.setItem("currentUser", id);
-            window.location.replace("http://127.0.0.1:5501/myLists.html");
+            window.location.replace("http://127.0.0.1:" + livePort + "/myLists.html");
         }
     }
         else

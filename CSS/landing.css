@@ -10,6 +10,7 @@
     --Color-4:#ffb700;
     --Color-5: whitesmoke;
     --Color-6: rgb(124, 29, 20);
+    --Active:rgb(255, 249, 194);
 }
 
 
@@ -102,8 +103,13 @@ input[type=button], button {
   }
 
   .btnR{
+    font-family: 'Oswald', sans-serif !important;
     border-radius: 5px;
     margin:1em;
+  }
+
+  .btnR:hover{
+    color: var(--Active);
   }
 
   input[type=text], input[type=password], input[type=email]{
@@ -114,10 +120,10 @@ input[type=button], button {
 }
 
 footer{
-    height: 200px;
-    background-color: rgba(104, 6, 6, 0.705);
-    color: whitesmoke;
-    text-align: center;
+    background-color: var(--Color-1) !important;
+    color: var(--Color-5);
+    padding-top: 2rem;
+    padding-bottom: 1rem;
 }
 
 .descripcionNova{
@@ -206,6 +212,7 @@ div>img, div>h4, div>p{
   } 
 
   .selectImg{
+    font-family: 'Oswald', sans-serif !important;
     margin: auto;
     text-align: center;
     background: none; 
@@ -214,6 +221,18 @@ div>img, div>h4, div>p{
     padding: 1em; 
     color:white;
     border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .selectImg label{
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .selectImg label:hover{
+    color: var(--Active)
   }
 
   input[type="file"] {

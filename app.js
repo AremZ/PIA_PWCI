@@ -11,18 +11,18 @@ var app=express();
 app.use(cors());
 app.use(express.json());
 
-var connection=mysql.createConnection({host:'localhost', user:'root',password:'',database:'pwcidb'});
+//var connection=mysql.createConnection({host:'localhost', user:'root',password:'',database:'pwcidb'});
+var connection=mysql.createConnection({host:'localhost', user:'PruebaDB3',password:'password',database:'pwcidb'});
 
 app.listen(puerto,()=>{
-    console.log("Funcionando en puerto 3mil");
+    console.log("Funcionando en puerto " + puerto);
 
 });
-
 
 connection.connect((error)=>{
     if(error)
         throw error;
-    console.log("La base de datos funciona");
+    console.log("Se conecto con la base de datos.");
 });
 
 
@@ -49,14 +49,14 @@ app.get("/getUser/:id", (req,res)=>{
 app.post("/loginUser", (req,res)=>{
 
     const user = req.body.user;
-    //const mail=req.body.email;
+    const mail=req.body.email;
     const pass = req.body.password;
     
 
 
    // const sql = "SELECT id_usuario,nombre_Usuario from usuarios where nombre_Usuario='"+user+"' AND password_Usuario='"+pass+"';";
 
-    const sql = "SELECT id_usuario from usuarios where (nombre_Usuario='"+user+"' AND password_Usuario='"+pass+"') OR (correo_Usuario='"+user+"' AND password_Usuario='"+pass+"');";
+    const sql = "SELECT id_usuario from usuarios where (nombre_Usuario='"+user+"' AND password_Usuario='"+pass+"') OR (correo_Usuario='"+mail+"' AND password_Usuario='"+pass+"');";
 
 
     connection.query(sql, (err, results)=>{
