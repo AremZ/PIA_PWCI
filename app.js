@@ -96,6 +96,52 @@ app.post("/registroUser", (req,res)=>{
 
 });
 
+
+
+app.post("/altaLista", (req,res)=>{
+
+    const name = req.body.name;
+    const desc=req.body.desc;
+    const type=req.body.type;
+    const user = req.body.user;
+
+    console.log(req.body);
+    const sql = "CALL sp_altaLista('"+name+"','"+desc+"','"+type+"',"+user+");";
+
+    connection.query(sql, (err, results, fields)=>{
+
+       if(err)  throw err;
+       
+       if(results.affectedRows>0){
+        res.send("1");
+        }
+    else{
+        res.send("0");
+    }
+    });
+
+});
+
+app.post("/allUserLists", (req,res)=>{
+
+     const id = req.body.id;
+    
+     console.log(req.body);
+     const sql = "SELECT id_Lista, nombre_Lista,descrip_Lista,tipo_Lista,usuario_Dueno from lista WHERE usuario_Dueno='"+id+"';";
+ 
+     connection.query(sql, (err, results)=>{
+ 
+        if(err)throw err;
+        if(results.length>0){
+            res.send(results);
+        }
+        else{
+            res.send("0");
+        }
+     });
+ 
+ });
+
 app.get("/getAllUsers", (req,res)=>{
 
    // const id = req.params.id;

@@ -22,7 +22,8 @@
 
     <script>
         $(document).ready(function(){
-            getLogged();
+            //getLogged();
+            getUserLists();
         });
     </script>
 </head>
@@ -159,7 +160,7 @@
         </div>
     </div>
     
-        <!------ Registro de Usuarios ------>
+        <!------ Alta listas ------>
         <div id="modNewList" class="modal fade">
             <div class="modal-dialog long-modal">
     
@@ -173,7 +174,7 @@
                             <h1 id="titleAdmin">Nueva lista</h1>
                             <hr>
                         </div>
-                       <form action="/action_page.php">
+                       <form id="formNewList">
                            <div class="row">
                                <div class="col-md-1"></div>
                                <div class="col-md-10">
@@ -181,13 +182,13 @@
                                        <div class="col-md-12 form-group">
                                            <label for="nameList">Nombre de la lista:</label>
                                            <div id="nameContainerList">
-                                             <input type="text" class="form-control" id="nameList" onfocus="limpiarCampo(0)" >
+                                             <input type="text" class="form-control" id="nameList" name="nameList" onfocus="limpiarCampo(0)" >
                                            </div>
                                        </div>
                                        <div class="col-md-12 form-group">
                                            <label for="descrListxt">Descripcion:</label>
                                            <div id="descrContainerList">
-                                               <textarea name="descrListxt" id="descrList" class="col-md-12" rows="4" onfocus="limpiarCampo(0)"></textarea>
+                                               <textarea name="descrListxt" id="descrNewList" name="descrNewList" class="col-md-12" rows="4" onfocus="limpiarCampo(0)"></textarea>
                                            </div>
                                        </div>
                                        <div class="col-md-4 form-group" id="imgList">
@@ -198,10 +199,10 @@
                                            <input type="file" id="addFotoList">
                                        </div>
                                        <div class="col-md-4 form-group" id="StateSel">
-                                        <label for="selectState">Elija la privacidad de su lista</label>                                
-                                        <select class="form-control" id="selectState">
-                                            <option>Pública</option>
-                                            <option>Privada</option>
+                                        <label for="tipoLista">Elija la privacidad de su lista</label>                                
+                                        <select class="form-control" id="tipoLista">
+                                            <option value="1">Privada</option>
+                                            <option value="2">Pública</option>
                                         </select>
                                        </div>
                                    </div>

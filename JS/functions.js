@@ -7,43 +7,7 @@ function validateLogin(){
 
 }
 
-function validateList(mode){
-    var content=document.getElementById("nameList");
-    var content2=document.getElementById("descrList");
-    var valido=true;
 
-    if(mode==0){
-
-    if (content.value.length<5){
-        document.getElementById("nameContainerList").className=document.getElementById("nameContainerList").className+" error";
-        valido=false;
-    }
-
-    if (content2.value.length<5){
-        document.getElementById("descrContainerList").className=document.getElementById("descrContainerList").className+" error";
-        valido=false;
-    }
-
-    
-}
-    else{
-        valido=true;
-        content=document.getElementById("nameObj");
-        if (content.value.length<5){
-            document.getElementById("nameContainerObj").className=document.getElementById("nameContainerObj").className+" error";
-            valido=false;
-        }
-        content2=document.getElementById("descrObj");
-        if (content2.value.length<5){
-            document.getElementById("descrContainerObj").className=document.getElementById("descrContainerObj").className+" error";
-            valido=false;
-        }
-}
-if(valido){
-    content.value="";
-    content2.value="";
-    }
-}
 
 function limpiarCampo(mode){
     
