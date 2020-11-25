@@ -29,7 +29,7 @@ req.onreadystatechange=function(data){
 req.send();
 }
 
-
+var livePort = '5500'
 
 function signupUser(){
     let signupForm=document.querySelector('form#formSignUp');
@@ -53,9 +53,11 @@ function signupUser(){
         if(req.readyState==4&&req.status==200){
         var data=req.responseText;
         
-        if (data=="1")
+        if (data=="1") {
           //window.location.replace("http://127.0.0.1:5501/myLists.html");
-          alert("¡Registro exitoso! Por favor inicia sesión.")
+          alert("¡Registro exitoso! Por favor inicia sesión.");
+          document.getElementById('id01').style.display='none';
+        }
         else
           alert("Usuario o correo ya registrado.")
         }
@@ -92,7 +94,7 @@ function signInUser(){
 
         if (id!=0){
             sessionStorage.setItem("currentUser", id);
-            window.location.replace("http://127.0.0.1:5501/myLists.html");
+            window.location.replace("http://127.0.0.1:" + livePort + "/myLists.html");
         }
     }
         else
@@ -161,12 +163,12 @@ function createList(){
     typeC= parseFloat(e.value);
 
     var currentUser = sessionStorage.getItem("currentUser");
-    /*
+    
     var ele = document.getElementsByName('tipoCuentaRB');           
     for(i = 0; i < ele.length; i++) { 
         if(ele[i].checked) 
             typeC=parseFloat(ele[i].value); 
-    } */
+    } 
 
 
     if(nameL.length>3&&descL.length>10&&typeC!=0){
