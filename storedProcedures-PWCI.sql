@@ -18,7 +18,7 @@ DELIMITER ;
 
 
 DELIMITER //
-CREATE PROCEDURE sp_altaNoticia(
+CREATE PROCEDURE sp_altaLista(
 	IN in_nombreLista varchar(30),
     IN in_descrip varchar(100),
     IN in_Tipo tinyint,

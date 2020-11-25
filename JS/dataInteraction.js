@@ -29,7 +29,7 @@ req.onreadystatechange=function(data){
 req.send();
 }
 
-var livePort = '5500'
+var livePort = '5501'
 
 function signupUser(){
     let signupForm=document.querySelector('form#formSignUp');
@@ -163,28 +163,20 @@ function createList(){
     typeC= parseFloat(e.value);
 
     var currentUser = sessionStorage.getItem("currentUser");
-    
-    var ele = document.getElementsByName('tipoCuentaRB');           
-    for(i = 0; i < ele.length; i++) { 
-        if(ele[i].checked) 
-            typeC=parseFloat(ele[i].value); 
-    } 
-
 
     if(nameL.length>3&&descL.length>10&&typeC!=0){
-    //e.preventDefault();
-    console.log(newListForm);
-    //console.log(e);
+    //console.log(newListForm);
     var req=new XMLHttpRequest();
     req.onreadystatechange = function() {   
         if(req.readyState==4&&req.status==200){
         var data=req.responseText;
         
-        if (data=="1")
-          //window.location.replace("http://127.0.0.1:5501/myLists.html");
+        if (data=="1"){
           alert("¡Lista creada!")
+          refreshListas();
+        }
         else
-          alert("Usuario o correo ya registrado.")
+          alert("¡No se puede repetir lista!")
         }
        
     }
@@ -200,17 +192,39 @@ function createList(){
 }
 
 function getUserLists(){
+    var tipoMensaje;
     var currentUser = sessionStorage.getItem("currentUser");
-    //falta recuperar id de lista
     var req=new XMLHttpRequest();
     req.onreadystatechange = function(data) {   
         if(req.readyState==4&&req.status==200){
             var datos=data.target.response;
-            console.log(datos);
             var parse=JSON.parse(datos);
             var valor=parse.length;
-            console.log(parse);
-            console.log(valor);
+            parse.forEach((k,v)=>{
+                
+                if(k.tipo_Lista=="private")
+                    tipoMensaje="Privada"
+                else
+                    tipoMensaje="Pública"
+                $("#listasUsuario").append(
+                    "<div class='col-md-12'> <div class='card myList'> <div class='row no-gutters'>"+
+                    "<div class='col-md-2'> <img class='card-img imgList' src='Imagenes/DisplayDGP1.png'>"+
+                    "</div> <div class='col-md-10'> <div class='card-body'>"+
+                    "<label class='idLista' style='font-size:10px;'>"+k.id_Lista+"</label>"+//DISPLAY NONE PENDIENTE
+                    "<h2 class='col-md-12 titleList'>"+k.nombre_Lista+" :)</h2>"+
+                    "<h6 class='col-md-12 titleList'>"+tipoMensaje+"</h6>"+
+                    "<p class='descrList'>"+k.descrip_Lista+"</p>"+
+                    "<div class='buttons'>"+
+                    "<button class='btnSeeList btn btn-outline-danger barBut'  data-toggle='modal' data-target='#editorNoticia'"+
+                    "type='submit' id='btnSeeList'><i class='fa fa-eye'></i> Ver mi lista</button>"+
+                    "<button class='btnDeleteList btn btn-outline-danger barBut' data-toggle='modal' data-target='#confirmDeleteList'"+
+                    "type='submit' id='btnDeleteList'><i class='fa fa-trash'></i> Eliminar</button>"+
+                    "</div></div></div></div></div> </div>"
+
+                );
+
+
+            });
         }
        
     }
@@ -221,4 +235,32 @@ function getUserLists(){
     );
 
     
+}
+function deleteList(idLista){
+    var req=new XMLHttpRequest();
+    req.onreadystatechange = function() {   
+        if(req.readyState==4&&req.status==200){
+        var data=req.responseText;
+        
+        if (data=="1"){
+          alert("¡Lista eliminada!")
+          refreshListas();
+        }
+        else
+          alert("Error en el proceso")
+        }
+       
+    }
+    req.open('POST','http://localhost:3000/bajaLista');
+    req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+    req.send(
+        JSON.stringify({lista:idLista})
+    );
+
+}
+
+function refreshListas(){
+        document.getElementById("listasUsuario").innerHTML = "";
+        getUserLists();
+
 }
