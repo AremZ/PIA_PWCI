@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/generales.css">
     <script src="JS/functions.js"></script>
+    <script src="JS/dataInteraction.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="Imagenes/LogoPag.png" />
     <!--<script src="JS/functions.js"></script>-->
+    <script src="JS/dataInteraction.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -21,7 +23,7 @@
 
     <script>
         $(document).ready(function(){
-            
+            getLista();
         });
     </script>
 </head>
@@ -70,7 +72,8 @@
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="titleLista">Nombre de la lista</h1>
+                        <h1 id="titleLista" class="titleLista">Nombre de la lista</h1>
+                        <h5 id="tipoLista" class="col-md-12 titleList">Tipo de lista</h5>
                     </div>
                     <div class="col-md-12 topBarList">
                         <button class="btn btn-outline-danger deleteList" data-toggle="modal" data-target="#confirmDeleteList"
@@ -83,8 +86,8 @@
                 </div>
             </div>
         </div>
-        <hr class="topTitleHR">
-        <p class="col-md-12 displayDescrList">DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA 
+        <br><hr class="topTitleHR">
+        <p id="displayDescrList" class="col-md-12 displayDescrList">DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA 
             DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA 
             DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA ...
             DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA 

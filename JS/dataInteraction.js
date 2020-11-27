@@ -5,11 +5,11 @@ AL CARGAR EL HTML MANDA CONSOLE LOG CON LA INFO
 */
 
 function getLogged(){
-    var currentUser = sessionStorage.getItem("currentUser");
+    var currentUser = localStorage.getItem("currentUser");
     alert(currentUser);
 }
 function logOut(){
-    sessionStorage.setItem("currentUser", 0);
+    localStorage.setItem("currentUser", 0);
 }
 
 window.onload=function(){
@@ -93,7 +93,7 @@ function signInUser(){
             id=parse[0].id_usuario;
 
         if (id!=0){
-            sessionStorage.setItem("currentUser", id);
+            localStorage.setItem("currentUser", id);
             window.location.replace("http://127.0.0.1:" + livePort + "/myLists.html");
         }
     }
@@ -162,7 +162,7 @@ function createList(){
     var e = document.getElementById("tipoLista");
     typeC= parseFloat(e.value);
 
-    var currentUser = sessionStorage.getItem("currentUser");
+    var currentUser = localStorage.getItem("currentUser");
 
     if(nameL.length>3&&descL.length>10&&typeC!=0){
     //console.log(newListForm);
@@ -193,13 +193,13 @@ function createList(){
 
 function getUserLists(){
     var tipoMensaje;
-    var currentUser = sessionStorage.getItem("currentUser");
+    var currentUser = localStorage.getItem("currentUser");
     var req=new XMLHttpRequest();
     req.onreadystatechange = function(data) {   
         if(req.readyState==4&&req.status==200){
             var datos=data.target.response;
             var parse=JSON.parse(datos);
-            var valor=parse.length;
+            //var valor=parse.length;
             parse.forEach((k,v)=>{
                 
                 if(k.tipo_Lista=="private")
@@ -262,5 +262,69 @@ function deleteList(idLista){
 function refreshListas(){
         document.getElementById("listasUsuario").innerHTML = "";
         getUserLists();
+
+}
+
+function verListaPage(id){
+    //window.location.replace("http://127.0.0.1:" + livePort + "/listView.html");
+    localStorage.setItem("lista",id);
+    window.location.href = "http://127.0.0.1:" + livePort + "/listView.html";
+}
+
+function getLista(){
+    var idLista = localStorage.getItem("lista");
+    //document.getElementById("titleLista").innerHTML = "holi";
+    var nombreLista=document.getElementById("titleLista");
+    var descripLista=document.getElementById("displayDescrList");
+    var tipo=document.getElementById("tipoLista");
+    var tipoMensaje;
+    var req=new XMLHttpRequest();
+    req.onreadystatechange = function(data) {   
+        if(req.readyState==4&&req.status==200){
+            var datos=data.target.response;
+            var parse=JSON.parse(datos);
+            //var valor=parse.length;
+            parse.forEach((k,v)=>{
+               alert("Tengo la información.");
+               if(k.tipo_Lista=="private")
+               tipoMensaje="Privada"
+            else
+               tipoMensaje="Pública"
+
+               nombreLista.innerHTML=k.nombre_Lista;
+               tipo.innerHTML=tipoMensaje;
+               descripLista.innerHTML=k.descrip_Lista;
+                /*tipoLista
+                $("#listasUsuario").append(
+                    "<div class='col-md-12'> <div class='card myList'> <div class='row no-gutters'>"+
+                    "<div class='col-md-2'> <img class='card-img imgList' src='Imagenes/DisplayDGP1.png'>"+
+                    "</div> <div class='col-md-10'> <div class='card-body'>"+
+                    "<label class='idLista' style='font-size:10px;'>"+k.id_Lista+"</label>"+//DISPLAY NONE PENDIENTE
+                    "<h2 class='col-md-12 titleList'>"+k.nombre_Lista+" :)</h2>"+
+                    "<h6 class='col-md-12 titleList'>"+tipoMensaje+"</h6>"+
+                    "<p class='descrList'>"+k.descrip_Lista+"</p>"+
+                    "<div class='buttons'>"+
+                    "<button class='btnSeeList btn btn-outline-danger barBut'  data-toggle='modal' data-target='#editorNoticia'"+
+                    "type='submit' id='btnSeeList'><i class='fa fa-eye'></i> Ver mi lista</button>"+
+                    "<button class='btnDeleteList btn btn-outline-danger barBut' data-toggle='modal' data-target='#confirmDeleteList'"+
+                    "type='submit' id='btnDeleteList'><i class='fa fa-trash'></i> Eliminar</button>"+
+                    "</div></div></div></div></div> </div>"
+
+                );*/
+
+
+            });
+        }
+       
+    }
+    req.open('POST','http://localhost:3000/getLista');
+    req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+    req.send(
+        JSON.stringify({id:idLista})
+    );
+
+
+
+
 
 }

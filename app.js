@@ -163,6 +163,28 @@ app.post("/allUserLists", (req,res)=>{
  
  });
 
+
+ app.post("/getLista", (req,res)=>{
+
+    const id = req.body.id;
+   
+    console.log(req.body);
+    const sql = "SELECT id_Lista, nombre_Lista,descrip_Lista,tipo_Lista from lista WHERE id_Lista='"+id+"';";
+
+    connection.query(sql, (err, results)=>{
+
+       if(err)throw err;
+       if(results.length>0){
+           res.send(results);
+       }
+       else{
+           res.send("0");
+       }
+    });
+
+});
+
+
 app.get("/getAllUsers", (req,res)=>{
 
    // const id = req.params.id;
