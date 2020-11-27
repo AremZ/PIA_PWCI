@@ -122,6 +122,30 @@ app.post("/altaLista", (req,res)=>{
 
 });
 
+app.post("/editarLista", (req,res)=>{
+
+    const name = req.body.name;
+    const desc=req.body.desc;
+    const type=req.body.type;
+    const list = req.body.list;
+
+    console.log(req.body);
+    const sql = "CALL sp_editarLista('"+name+"','"+desc+"','"+type+"',"+list+");";
+
+    connection.query(sql, (err, results, fields)=>{
+
+       if(err)  throw err;
+       
+       if(results.affectedRows>0){
+        res.send("1");
+        }
+    else{
+        res.send("0");
+    }
+    });
+
+});
+
 app.post("/bajaLista", (req,res)=>{
 
     const idL = req.body.lista;
@@ -183,6 +207,7 @@ app.post("/allUserLists", (req,res)=>{
     });
 
 });
+
 
 
 app.get("/getAllUsers", (req,res)=>{

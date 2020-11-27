@@ -31,3 +31,16 @@ FROM dual
 WHERE NOT EXISTS (SELECT nombre_Lista FROM lista WHERE nombre_Lista=in_nombreLista AND usuario_Dueno= in_idUsuario);
     END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_editarLista(
+	IN in_nombreLista varchar(30),
+    IN in_descrip varchar(100),
+    IN in_Tipo tinyint,
+    IN in_Lista int
+    )
+    BEGIN
+	UPDATE lista SET nombre_Lista=in_nombreLista, descrip_Lista=in_descrip, tipo_Lista=in_Tipo
+    WHERE id_lista=in_Lista;
+    END //
+DELIMITER ;

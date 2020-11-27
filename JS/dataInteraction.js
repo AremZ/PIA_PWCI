@@ -113,7 +113,7 @@ function signInUser(){
         alert("Revise los datos.");
 }
 
-function validateList(mode){
+function validateList(mode, action){
     var content=document.getElementById("nameList");
     var content2=document.getElementById("descrNewList");
     var valido=true;
@@ -146,7 +146,10 @@ function validateList(mode){
         }
 }
 if(valido){
-    createList();
+    if(action==0)
+        createList();
+    if(action==1)
+        editLista();
     content.value="";
     content2.value="";
     }
@@ -266,7 +269,6 @@ function refreshListas(){
 }
 
 function verListaPage(id){
-    //window.location.replace("http://127.0.0.1:" + livePort + "/listView.html");
     localStorage.setItem("lista",id);
     window.location.href = "http://127.0.0.1:" + livePort + "/listView.html";
 }
@@ -294,25 +296,6 @@ function getLista(){
                nombreLista.innerHTML=k.nombre_Lista;
                tipo.innerHTML=tipoMensaje;
                descripLista.innerHTML=k.descrip_Lista;
-                /*tipoLista
-                $("#listasUsuario").append(
-                    "<div class='col-md-12'> <div class='card myList'> <div class='row no-gutters'>"+
-                    "<div class='col-md-2'> <img class='card-img imgList' src='Imagenes/DisplayDGP1.png'>"+
-                    "</div> <div class='col-md-10'> <div class='card-body'>"+
-                    "<label class='idLista' style='font-size:10px;'>"+k.id_Lista+"</label>"+//DISPLAY NONE PENDIENTE
-                    "<h2 class='col-md-12 titleList'>"+k.nombre_Lista+" :)</h2>"+
-                    "<h6 class='col-md-12 titleList'>"+tipoMensaje+"</h6>"+
-                    "<p class='descrList'>"+k.descrip_Lista+"</p>"+
-                    "<div class='buttons'>"+
-                    "<button class='btnSeeList btn btn-outline-danger barBut'  data-toggle='modal' data-target='#editorNoticia'"+
-                    "type='submit' id='btnSeeList'><i class='fa fa-eye'></i> Ver mi lista</button>"+
-                    "<button class='btnDeleteList btn btn-outline-danger barBut' data-toggle='modal' data-target='#confirmDeleteList'"+
-                    "type='submit' id='btnDeleteList'><i class='fa fa-trash'></i> Eliminar</button>"+
-                    "</div></div></div></div></div> </div>"
-
-                );*/
-
-
             });
         }
        
@@ -322,9 +305,45 @@ function getLista(){
     req.send(
         JSON.stringify({id:idLista})
     );
+}
+
+function editLista(){
+    alert("Vas a editar la lista.");
 
 
+    let newListForm=document.querySelector('form#formEditList');
+   
+    var nameL=newListForm.nameList.value;
+    var descL=newListForm.descrNewList.value;
+    var typeC=0;
+    var e = document.getElementById("tipoListaE");
+    typeC= parseFloat(e.value);
 
+    var list=localStorage.getItem("lista");
 
+    if(nameL.length>3&&descL.length>10&&typeC!=0){
+    //console.log(newListForm);
+    var req=new XMLHttpRequest();
+    req.onreadystatechange = function() {   
+        if(req.readyState==4&&req.status==200){
+        var data=req.responseText;
+        
+        if (data=="1"){
+          alert("¡Lista modificada!")
+          getLista(list);
+        }
+        else
+          alert("Error en el proceso.")
+        }
+       
+    }
+    req.open('POST','http://localhost:3000/editarLista');
+    req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+    req.send(
+        JSON.stringify({name:nameL, desc:descL, type:typeC, list:list})
+    );
 
+    }
+    else
+        alert("Revise los datos.");
 }
