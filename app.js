@@ -209,6 +209,120 @@ app.post("/allUserLists", (req,res)=>{
 });
 
 
+app.post("/addObjeto", (req,res)=>{
+
+    const name = req.body.name;
+    const desc=req.body.desc;
+    const state=req.body.state;
+    const list = req.body.list;
+
+    console.log(req.body);
+    const sql = "CALL sp_addObjeto('"+name+"','"+desc+"','"+state+"',"+list+");";
+
+    connection.query(sql, (err, results, fields)=>{
+
+       if(err)  throw err;
+       
+       if(results.affectedRows>0){
+        res.send("1");
+        }
+    else{
+        res.send("0");
+    }
+    });
+
+});
+
+app.post("/editObjeto", (req,res)=>{
+
+    const id = req.body.obj;
+    const name = req.body.name;
+    const desc=req.body.desc;
+    const state=req.body.state;
+    
+
+    console.log(req.body);
+    const sql = "CALL sp_editarObjeto("+id+",'"+name+"','"+desc+"','"+state+"');";
+
+    connection.query(sql, (err, results, fields)=>{
+
+       if(err)  throw err;
+       
+       if(results.affectedRows>0){
+        res.send("1");
+        }
+    else{
+        res.send("0");
+    }
+    });
+
+});
+
+app.post("/bajaObjeto", (req,res)=>{
+
+    const idO = req.body.id;
+
+    console.log(req.body);
+    const sql = "DELETE from objeto WHERE id_Objeto="+idO+";";
+
+    connection.query(sql, (err, results, fields)=>{
+
+       if(err)  throw err;
+       
+       if(results.affectedRows>0){
+        res.send("1");
+        }
+    else{
+        res.send("0");
+    }
+    });
+
+});
+
+
+app.post("/getObjeto", (req,res)=>{
+
+    const id = req.body.idOb;
+    
+    console.log(req.body);
+    const sql = "SELECT id_Objeto, nombre_Objeto,descrip_Objeto,estado_Objeto from objeto WHERE id_Objeto="+id+";";
+
+    connection.query(sql, (err, results, fields)=>{
+
+       if(err)  throw err;
+       
+       if(results.length>0){
+        res.send(results);
+        }
+    else{
+        res.send("0");
+    }
+    });
+
+});
+
+
+
+
+app.post("/getListObjects", (req,res)=>{
+
+    const list = req.body.list;
+    console.log(req.body);
+    const sql = "SELECT id_Objeto, nombre_Objeto,descrip_Objeto,estado_Objeto from objeto WHERE lista_Duena="+list+";"
+    
+    connection.query(sql, (err, results, fields)=>{
+
+       if(err)  throw err;
+       
+       if(results.length>0){
+        res.send(results);
+        }
+    else{
+        res.send("0");
+    }
+    });
+
+});
 
 app.get("/getAllUsers", (req,res)=>{
 

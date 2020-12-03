@@ -23,8 +23,45 @@
 
     <script>
         $(document).ready(function(){
+
+            var objModificar=0;
             getLista();
+            getObjetosLista();
+            $("body").on("click", ".btnEditObj",function(){
+                var parent=$(this).parent();
+                parent=parent.parent();
+                objModificar = $(parent).find(".idObjeto").text();
+                alert(objModificar);
+            });
+            $("body").on("click", ".btnDeleteObj",function(){
+                var parent=$(this).parent();
+                parent=parent.parent();
+                objModificar = $(parent).find(".idObjeto").text();
+                alert(objModificar);
+            });
+
+            $("#btnConfirmDelList").click(function() {
+                deleteList(id);
+            });
+
+            $("#saveObjEdit").click(function(){
+                editObjeto(objModificar);
+            });
+
+            $("#btnConfirmDelObj").click(function(){
+                deleteObjeto(objModificar);
+            });
+
+            
+
         });
+        function deleteLista(){
+            var id=localStorage.getItem("lista");
+            deleteListSelf(id);
+        }
+
+  
+
     </script>
 </head>
 
@@ -56,7 +93,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMA">
                             <a class="dropdown-item" href="profile.html">Mi Perfil</a>
                             <a class="dropdown-item" href="myLists.html">Mis Listas</a>
-                            <a class="dropdown-item" href="landing.html">Cerrar Sesion</a>
+                            <a class="dropdown-item" onclick="logOut()">Cerrar Sesion</a>
                         </div>
                     </li>         
                 </ul>
@@ -101,8 +138,8 @@
             DESCRIPCION CORTA DESCRIPCION CORTA DESCRIPCION CORTA ...</p>
         <hr class="topTitleHR">
 
-        <div class="row">
-
+        <div id="contenedorObjetosLista" class="row">
+<!--
             <div class="col-lg-3">
                 <div class="card card-obj">
                     <img class="card-img imgObject" src="Imagenes/PSWSH.jpg">
@@ -130,99 +167,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-3">
-                <div class="card card-obj">
-                    <img class="card-img imgObject" src="Imagenes/PSWSH.jpg">
-                    <div class="card-body">
-                        <div class="row bodyTarjeta">
-                            <div class="card-title titleObject">
-                                Pokemon Sword & Shield | Nintendo Switch                   
-                            </div>
-                            <div class="descrObject">
-                                Pokémon Espada y Escudo, conocidos en Japón como Pocket Monsters Sword & Shield,
-                                son dos videojuegos de rol desarrollados por Game Freak y publicados por Nintendo
-                                y The Pokémon Company para Nintendo Switch.
-                            </div>
-                        </div>
-                        <div class="row buttonsTarjeta">
-                            <div class="col-md-6">
-                                <button class="btn btn-outline-danger barButObj" type="" id="btnEditObj"><i class="fa fa-pencil"></i> Editar</button>
-                            </div>
-                            <div class="col-md-6">
-                                <button class="btn btn-outline-danger barButObj" type="" id="btnDeleteObj" data-toggle="modal" data-target="#confirmDeleteObj"><i class="fa fa-trash"></i> Eliminar</button>
-                            </div>
-                            <div class="col-md-12">
-                                <button class="btn btn-outline-danger barButObj" type="" id="btnObtenidoObj"><i class="fa fa-check-square"></i> Obtenido</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3">
-                <div class="card card-obj">
-                    <img class="card-img imgObject" src="Imagenes/PSWSH.jpg">
-                    <div class="card-body">
-                        <div class="row bodyTarjeta">
-                            <div class="card-title titleObject">
-                                Pokemon Sword & Shield | Nintendo Switch                   
-                            </div>
-                            <div class="descrObject">
-                                Pokémon Espada y Escudo, conocidos en Japón como Pocket Monsters Sword & Shield,
-                                son dos videojuegos de rol desarrollados por Game Freak y publicados por Nintendo
-                                y The Pokémon Company para Nintendo Switch.
-                            </div>
-                        </div>
-                        <div class="row buttonsTarjeta">
-                            <div class="col-md-6">
-                                <button class="btn btn-outline-danger barButObj" type="" id="btnEditObj"><i class="fa fa-pencil"></i> Editar</button>
-                            </div>
-                            <div class="col-md-6">
-                                <button class="btn btn-outline-danger barButObj" type="" id="btnDeleteObj" data-toggle="modal" data-target="#confirmDeleteObj"><i class="fa fa-trash"></i> Eliminar</button>
-                            </div>
-                            <div class="col-md-12">
-                                <button class="btn btn-outline-danger barButObj" type="" id="btnObtenidoObj"><i class="fa fa-check-square"></i> Obtenido</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3">
-                <div class="card card-obj">
-                    <img class="card-img imgObject" src="Imagenes/PSWSH.jpg">
-                    <div class="card-body">
-                        <div class="row bodyTarjeta">
-                            <div class="card-title titleObject">
-                                Pokemon Sword & Shield | Nintendo Switch                   
-                            </div>
-                            <div class="descrObject">
-                                Pokémon Espada y Escudo, conocidos en Japón como Pocket Monsters Sword & Shield,
-                                son dos videojuegos de rol desarrollados por Game Freak y publicados por Nintendo
-                                y The Pokémon Company para Nintendo Switch.
-                            </div>
-                        </div>
-                        <div class="row buttonsTarjeta">
-                            <div class="col-md-6">
-                                <button class="btn btn-outline-danger barButObj" type="" id="btnEditObj"><i class="fa fa-pencil"></i> Editar</button>
-                            </div>
-                            <div class="col-md-6">
-                                <button class="btn btn-outline-danger barButObj" type="" id="btnDeleteObj" data-toggle="modal" data-target="#confirmDeleteObj"><i class="fa fa-trash"></i> Eliminar</button>
-                            </div>
-                            <div class="col-md-12">
-                                <button class="btn btn-outline-danger barButObj" type="" id="btnObtenidoObj"><i class="fa fa-check-square"></i> Obtenido</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>-->
 
         </div>
     </div>
     
-        <!------ Registro de Lista ------>
+        <!------ Edición de Lista ------>
         <div id="modEditList" class="modal fade">
             <div class="modal-dialog long-modal">
     
@@ -278,7 +228,7 @@
                        </button>
                        <!--data-toggle="modal"-->
                        <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" onclick="validateList(0,1)" id="saveList"  data-target="#modEditList"><i class="fa fa-floppy-o"></i> Guardar cambios
+                           style="float:right" onclick="validateList(0,1)" id="saveList" data-toggle="modal" data-target="#modEditList"><i class="fa fa-floppy-o"></i> Guardar cambios
                        </button>
                     </div>
                 </div>
@@ -299,7 +249,7 @@
                             <h1>Nuevo Objeto</h1>
                             <hr>
                         </div>
-                       <form action="/action_page.php">
+                       <form id="formNewObject">
                            <div class="row">
                                <div class="col-md-1"></div>
                                <div class="col-md-10">
@@ -307,22 +257,31 @@
                                        <div class="col-md-12 form-group">
                                            <label for="nameObj">Nombre de objeto:</label>
                                            <div id="nameContainerObj">
-                                             <input type="text" class="form-control" id="nameObj" onfocus="limpiarCampo(1)">
+                                             <input type="text" class="form-control" id="nameObj" name="nameObj" onfocus="limpiarCampo(1)">
                                            </div>
                                        </div>
                                        <div class="col-md-12 form-group">
                                            <label for="descrObjtxt">Descripcion:</label>
                                            <div id="descrContainerObj">
-                                               <textarea name="descrObjtxt" id="descrObj" class="col-md-12" rows="4" onfocus="limpiarCampo(1)"></textarea>
+                                               <textarea name="descrObjtxt" id="descrObj" name="descrObj" class="col-md-12" rows="4" onfocus="limpiarCampo(1)"></textarea>
                                            </div>
+                                       </div>
+                                       <div class="col-md-4 form-group" id="StateSel">
+                                        <label for="estadoObjeto">Elija el estado:</label>                                
+                                        <select class="form-control" id="estadoObjeto">
+                                            <option value="1">Lo busco</option>
+                                            <option value="2">Lo tengo</option>
+                                        </select>
                                        </div>
                                        <div class="col-md-6 form-group" id="imgObj">
                                            <img src="Imagenes/DisplayDGP1.png">
-                                       </div>
-                                       <div class="col-md-6 form-group">
-                                           <label for="addFotoObj" class="custom-file-upload">Agregar una foto de portada...</label>                                
+                                           <label for="addFotoObj" class="custom-file-upload">Agregar foto</label>                                
                                            <input type="file" id="addFotoObj">
                                        </div>
+                                       <div class="col-md-6 form-group">
+                                           
+                                       </div>
+                                       
                                    </div>
                                </div>
                                <div class="col-md-1"></div>
@@ -334,13 +293,82 @@
                        </button>
                        <!-- data-toggle="modal"-->
                        <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" onclick="validateList(1)" id="saveObj" data-target="#modNewObj"><i class="fa fa-check"></i> Crear
+                           style="float:right" onclick="addObjeto()" id="saveObj" data-toggle="modal" data-target="#modNewObj"><i class="fa fa-check"></i> Crear
                        </button>
                     </div>
                 </div>
             </div>
         </div>
     
+
+
+          <!------ Registro de Objeto ------>
+          <div id="modEditObj" class="modal fade">
+            <div class="modal-dialog long-modal">
+    
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div id="createObj" class="modal-body">
+                        <div>
+                            <h1>Editar Objeto</h1>
+                            <hr>
+                        </div>
+                       <form id="formEditObject">
+                           <div class="row">
+                               <div class="col-md-1"></div>
+                               <div class="col-md-10">
+                                   <div class="row">
+                                       <div class="col-md-12 form-group">
+                                           <label for="nameObj">Nombre de objeto:</label>
+                                           <div id="nameContainerObj">
+                                             <input type="text" class="form-control" id="nameObj" name="nameObj" onfocus="limpiarCampo(1)">
+                                           </div>
+                                       </div>
+                                       <div class="col-md-12 form-group">
+                                           <label for="descrObjtxt">Descripcion:</label>
+                                           <div id="descrContainerObj">
+                                               <textarea name="descrObjtxt" id="descrObj" name="descrObj" class="col-md-12" rows="4" onfocus="limpiarCampo(1)"></textarea>
+                                           </div>
+                                       </div>
+                                       <div class="col-md-4 form-group" id="StateSel">
+                                        <label for="estadoObjetoE">Elija el estado:</label>                                
+                                        <select class="form-control" id="estadoObjetoE">
+                                            <option value="1">Lo busco</option>
+                                            <option value="2">Lo tengo</option>
+                                        </select>
+                                       </div>
+                                       <div class="col-md-6 form-group" id="imgObj">
+                                           <img src="Imagenes/DisplayDGP1.png">
+                                           <label for="addFotoObj" class="custom-file-upload">Agregar foto</label>                                
+                                           <input type="file" id="addFotoObj">
+                                       </div>
+                                       <div class="col-md-6 form-group">
+                                           
+                                       </div>
+                                       
+                                   </div>
+                               </div>
+                               <div class="col-md-1"></div>
+                           </div>
+                       </form>
+                       <hr>
+                       <button type="button" class="btn btn-outline-danger" 
+                           style="float:right" id="cancelsaveObj" data-toggle="modal" data-target="#modEditObj"><i class="fa fa-times"></i> Cancelar
+                       </button>
+                       <!-- data-toggle="modal"-->
+                       <button type="button" class="btn btn-outline-danger" 
+                           style="float:right" id="saveObjEdit" data-toggle="modal" data-target="#modEditObj"><i class="fa fa-check"></i> Guardar cambios
+                       </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <div id="confirmDeleteList" class="modal fade">
             <div class="modal-dialog">
     
@@ -355,7 +383,7 @@
                     
                         <hr>
                         <button type="button" class="btn btn-outline-danger" style="float:left" id="btnConfirmDelList"
-                        data-toggle="modal" data-target="#confirmDeleteList"></a><i class="fa fa-fire">                        
+                        data-toggle="modal" data-target="#confirmDeleteList" onclick="deleteLista()"></a><i class="fa fa-fire">                        
                         </i> Confirmar</button>
     
                         <button type="button" class="btn btn-outline-danger" 

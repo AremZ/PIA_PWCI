@@ -4,14 +4,45 @@ AL CARGAR EL HTML MANDA CONSOLE LOG CON LA INFO
 /////////
 */
 
+/////////////////VALIDACIONES//////////////
+
+function validateLogin(){
+    var user=document.getElementById("user").value;
+    var pass=document.getElementById("pass").value;
+
+    var acceder=false;
+    if(user.length<3||user.length>45)
+        acceder=false;
+    else
+        acceder=true;
+    if(pass.length<8||pass.length>15)
+        acceder=false;
+    else
+        acceder=true;
+
+    if(acceder)
+        signInUser();
+    else
+        alert("¡Verifique sus datos!")
+
+    document.getElementById("user").value="";
+    document.getElementById("pass").value="";
+
+}
+
+
+//////////////MANEJO DE INFORMACIÓN//////////////
+
 function getLogged(){
     var currentUser = localStorage.getItem("currentUser");
     alert(currentUser);
 }
 function logOut(){
     localStorage.setItem("currentUser", 0);
+    localStorage.setItem("lista", 0);
+    window.location.replace("http://127.0.0.1:" + livePort + "/landing.html");
 }
-
+/*
 window.onload=function(){
     var req=new XMLHttpRequest(); 
 req.open('GET','http://localhost:3000/getAllUsers',true);
@@ -27,7 +58,7 @@ req.onreadystatechange=function(data){
 };
 
 req.send();
-}
+}*/
 
 var livePort = '5501'
 
@@ -98,7 +129,7 @@ function signInUser(){
         }
     }
         else
-          alert("Verifique los datos.")
+          alert("Usuario no registrado.")
         }
        
     }
@@ -239,6 +270,7 @@ function getUserLists(){
 
     
 }
+
 function deleteList(idLista){
     var req=new XMLHttpRequest();
     req.onreadystatechange = function() {   
@@ -262,9 +294,39 @@ function deleteList(idLista){
 
 }
 
+function deleteListSelf(idLista){
+    var req=new XMLHttpRequest();
+    req.onreadystatechange = function() {   
+        if(req.readyState==4&&req.status==200){
+        var data=req.responseText;
+        
+        if (data=="1"){
+          alert("¡Lista eliminada!");
+          localStorage.setItem("lista",0);
+          window.location.href = "http://127.0.0.1:" + livePort + "/myLists.html";
+        }
+        else
+          alert("Error en el proceso")
+        }
+       
+    }
+    req.open('POST','http://localhost:3000/bajaLista');
+    req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+    req.send(
+        JSON.stringify({lista:idLista})
+    );
+
+}
+
 function refreshListas(){
         document.getElementById("listasUsuario").innerHTML = "";
         getUserLists();
+
+}
+
+function refreshObjetos(){
+    document.getElementById("contenedorObjetosLista").innerHTML = "";
+    getObjetosLista();
 
 }
 
@@ -287,7 +349,7 @@ function getLista(){
             var parse=JSON.parse(datos);
             //var valor=parse.length;
             parse.forEach((k,v)=>{
-               alert("Tengo la información.");
+               //alert("Tengo la información.");
                if(k.tipo_Lista=="private")
                tipoMensaje="Privada"
             else
@@ -308,7 +370,7 @@ function getLista(){
 }
 
 function editLista(){
-    alert("Vas a editar la lista.");
+    //alert("Vas a editar la lista.");
 
 
     let newListForm=document.querySelector('form#formEditList');
@@ -347,3 +409,147 @@ function editLista(){
     else
         alert("Revise los datos.");
 }
+
+
+
+function addObjeto(){
+   
+    let newListForm=document.querySelector('form#formNewObject');
+   
+    var nameO=newListForm.nameObj.value;
+    var descO=newListForm.descrObj.value;
+    var stateO=0;
+    var e = document.getElementById("estadoObjeto");
+    stateO= parseFloat(e.value);
+
+    var currentList = localStorage.getItem("lista");
+
+    if(nameO.length>3&&descO.length>10&&stateO!=0){
+    //console.log(newListForm);
+    var req=new XMLHttpRequest();
+    req.onreadystatechange = function() {   
+        if(req.readyState==4&&req.status==200){
+        var data=req.responseText;
+        
+        if (data=="1"){
+          alert("¡Objeto añadido!")
+          //refreshListas();
+          refreshObjetos();
+        }
+        else
+          alert("¡Problemas con el objeto!")
+        }
+       
+    }
+    req.open('POST','http://localhost:3000/addObjeto');
+    req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+    req.send(
+        JSON.stringify({name:nameO, desc:descO, state:stateO, list:currentList})
+    );
+
+    }
+    else
+        alert("Revise los datos.");
+}
+
+
+function editObjeto(id){
+   
+    let newListForm=document.querySelector('form#formEditObject');
+   
+    var nameO=newListForm.nameObj.value;
+    var descO=newListForm.descrObj.value;
+    var stateO=0;
+    var e = document.getElementById("estadoObjetoE");
+    stateO= parseFloat(e.value);
+
+    if(nameO.length>3&&descO.length>10&&stateO!=0){
+    //console.log(newListForm);
+    var req=new XMLHttpRequest();
+    req.onreadystatechange = function() {   
+        if(req.readyState==4&&req.status==200){
+        var data=req.responseText;
+        
+        if (data=="1"){
+          alert("¡Cambios guardados!")
+          //refreshListas();
+          refreshObjetos();
+        }
+        else
+          alert("¡Problemas con el objeto!")
+        }
+       
+    }
+    req.open('POST','http://localhost:3000/editObjeto');
+    req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+    req.send(
+        JSON.stringify({obj:id, name:nameO, desc:descO, state:stateO})
+    );
+
+    }
+    else
+        alert("Revise los datos.");
+}
+
+function deleteObjeto(idObjeto){
+    var req=new XMLHttpRequest();
+    req.onreadystatechange = function() {   
+        if(req.readyState==4&&req.status==200){
+        var data=req.responseText;
+        
+        if (data=="1"){
+          alert("¡Objeto eliminado!")
+          refreshObjetos();
+        }
+        else
+          alert("Error en el proceso")
+        }
+       
+    }
+    req.open('POST','http://localhost:3000/bajaObjeto');
+    req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+    req.send(
+        JSON.stringify({id:idObjeto})
+    );
+
+}
+
+function getObjetosLista(){
+    var estado;
+    var currentList = localStorage.getItem("lista");
+    var req=new XMLHttpRequest();
+    req.onreadystatechange = function(data) {   
+        if(req.readyState==4&&req.status==200){
+            var datos=data.target.response;
+            var parse=JSON.parse(datos);
+            //var valor=parse.length;
+            parse.forEach((k,v)=>{
+                if(k.estado_Objeto=="busca")
+                    estado="Lo busco"
+                else
+                    estado="Lo tengo"
+                $("#contenedorObjetosLista").append(
+
+                    "<div class='col-lg-3'><div class='card card-obj'> <img class='card-img imgObject' src='Imagenes/PSWSH.jpg'><div class='card-body'>"+
+                    "<div class='row bodyTarjeta'> <div class='card-title titleObject'>"+  k.nombre_Objeto+
+                    "<div class='descrObject'>"+ k.descrip_Objeto +"</div>"+
+                    "</div><div class='row buttonsTarjeta'><div class='col-md-6'><label class='idObjeto' style='font-size:10px; margin:-0.5em;'>"+k.id_Objeto+"</label>"+
+                    "<button class='btn btn-outline-danger barButObj btnEditObj' id='btnEditObj' data-toggle='modal' data-target='#modEditObj'><i class='fa fa-pencil'></i> Editar</button></div>"+
+                    "<div class='col-md-6'> <button class='btn btn-outline-danger barButObj btnDeleteObj'id='btnDeleteObj' data-toggle='modal' data-target='#confirmDeleteObj'><i class='fa fa-trash'></i> Eliminar</button>"+
+                    "</div><div class='col-md-12'><label class='btn btn-outline-danger barButObj' type='' id='btnObtenidoObj'><i class='fa fa-check-square'></i>"+ estado+"</label>"+
+                    "</div></div> </div></div></div>"
+                );
+            });
+        }
+    }
+    req.open('POST','http://localhost:3000/getListObjects');
+    req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+    req.send(
+        JSON.stringify({list:currentList})
+    );
+
+    
+}
+
+
+

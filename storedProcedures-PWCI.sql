@@ -44,3 +44,51 @@ CREATE PROCEDURE sp_editarLista(
     WHERE id_lista=in_Lista;
     END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_addObjeto(
+	IN in_nombreObjeto varchar(30),
+    IN in_descrip varchar(100),
+    IN in_estado int,
+    IN in_idLista int
+    )
+    BEGIN
+	INSERT INTO objeto(nombre_Objeto,descrip_Objeto,estado_Objeto,lista_Duena)
+    VALUES(in_nombreObjeto,in_descrip,in_estado,in_idLista);
+    END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_editarObjeto(
+	IN in_idObjeto int,
+	IN in_nombreObjeto varchar(30),
+    IN in_descrip varchar(100),
+    IN in_estado int
+    )
+    BEGIN
+	UPDATE objeto SET nombre_Objeto=in_nombreObjeto, descrip_Objeto=in_descrip, estado_Objeto=in_estado WHERE id_Objeto=in_idObjeto;
+    END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_getListObjects(
+    IN in_idLista int
+    )
+    BEGIN
+	SELECT id_Objeto, nombre_Objeto,descrip_Objeto,estado_Objeto
+    FROM objeto 
+    WHERE lista_Duena=in_idLista;
+    END //
+DELIMITER ;
+
+
+
+/*----------------TRIGGER LISTA---------------*/
+DELIMITER //
+CREATE TRIGGER t_deleteListaObjeto
+BEFORE DELETE
+ON lista FOR EACH ROW
+BEGIN
+   DELETE FROM objeto WHERE lista_Duena=OLD.id_Lista;
+END//
+DELIMITER ;

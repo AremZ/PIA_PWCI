@@ -11,7 +11,6 @@
     <script src="JS/functions.js"></script>
     <script src="JS/dataInteraction.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="Imagenes/LogoPag.png" />
-    <!--<script src="JS/functions.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -45,7 +44,7 @@
                 var parent=$(this).parent();
                 parent=parent.parent();
                 id = $(parent).find(".idLista").text();
-                alert(id);
+                //alert(id);
                 verListaPage(id);
                 
             });
@@ -82,7 +81,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMA">
                             <a class="dropdown-item" href="profile.html">Mi Perfil</a>
                             <a class="dropdown-item" href="myLists.html">Mis Listas</a>
-                            <a class="dropdown-item" href="landing.html" onclick="logOut()" >Cerrar Sesion</a>
+                            <a class="dropdown-item" onclick="logOut()" >Cerrar Sesion</a>
                         </div>
                     </li>         
                 </ul>
@@ -188,7 +187,7 @@
                            style="float:right" id="cancelList" data-toggle="modal" data-target="#modNewList"><i class="fa fa-times"></i> Cancelar
                        </button>
                        <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" id="registerList"  data-target="#modNewList" onclick="validateList(0,0)"><i class="fa fa-check"></i> Crear
+                           style="float:right" id="registerList"  data-toggle="modal" data-target="#modNewList" onclick="validateList(0,0)"><i class="fa fa-check"></i> Crear
                        </button>
                     </div>
                 </div>
