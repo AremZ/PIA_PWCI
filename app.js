@@ -11,7 +11,8 @@ var app=express();
 app.use(cors());
 app.use(express.json());
 
-var connection=mysql.createConnection({host:'localhost', user:'root',password:'',database:'pwcidb'});
+var connection=mysql.createConnection({host:'localhost', user:'PruebaDB3',password:'password',database:'pwcidb'});
+//var connection=mysql.createConnection({host:'localhost', user:'root',password:'',database:'pwcidb'});
 
 app.listen(puerto,()=>{
     console.log("Funcionando en puerto 3mil");

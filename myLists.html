@@ -23,6 +23,7 @@
         $(document).ready(function(){
             //getLogged();
             getUserLists();
+            setupImage('addFotoList', 'imgList', '.preview-image');
             var id;
             $("body").on("click", ".btnDeleteList",function(){
                 //alert("¡Todo funciona!");
@@ -95,7 +96,7 @@
                 <h1 class="topTitle">Mis Listas</h1>
             </div>
             <div class="col-lg-2">
-                <button class="btn btn-outline-danger newList" data-toggle="modal" data-target="#modNewList"
+                <button class="btn btn-outline-danger newList" id="createNewList" data-toggle="modal" data-target="#modNewList"
                 onclick=""><i class="fa fa-plus-circle"></i> Crear nueva lista</button>
             </div>
         </div>
@@ -154,22 +155,26 @@
                                        <div class="col-md-12 form-group">
                                            <label for="nameList">Nombre de la lista:</label>
                                            <div id="nameContainerList">
-                                             <input type="text" class="form-control" id="nameList" name="nameList" onfocus="limpiarCampo(0)" >
+                                             <input type="text" class="form-control" id="nameList" name="nameList" onfocus="limpiarCampo('nameList')" >
                                            </div>
                                        </div>
                                        <div class="col-md-12 form-group">
                                            <label for="descrListxt">Descripcion:</label>
                                            <div id="descrContainerList">
-                                               <textarea name="descrListxt" id="descrNewList" name="descrNewList" class="col-md-12" rows="4" onfocus="limpiarCampo(0)"></textarea>
+                                               <textarea name="descrListxt" id="descrNewList" name="descrNewList" class="col-md-12" rows="4" onfocus="limpiarCampo('descrNewList')"></textarea>
                                            </div>
-                                       </div>
+                                       </div>  
+
                                        <div class="col-md-4 form-group" id="imgList">
-                                           <img src="Imagenes/DisplayDGP1.png">
+                                           <img src="Imagenes/DisplayDGP1.png" class="preview-image">
                                        </div>
                                        <div class="col-md-4 form-group">
-                                           <label for="addFotoList" class="custom-file-upload">Agregar una foto de portada...</label>                                
-                                           <input type="file" id="addFotoList">
+                                           <form accept-charset="utf-8" method="POST"  id="sentImg" enctype="multipart/form-data">  
+                                                <label for="addFotoList" class="custom-file-upload">Agregar una foto de portada...</label>                                
+                                                <input type="file" id="addFotoList" name="addFotoList">
+                                           </form>                                                        
                                        </div>
+                                       
                                        <div class="col-md-4 form-group" id="StateSel">
                                         <label for="tipoLista">Elija la privacidad de su lista</label>                                
                                         <select class="form-control" id="tipoLista">
@@ -187,7 +192,7 @@
                            style="float:right" id="cancelList" data-toggle="modal" data-target="#modNewList"><i class="fa fa-times"></i> Cancelar
                        </button>
                        <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" id="registerList"  data-toggle="modal" data-target="#modNewList" onclick="validateList(0,0)"><i class="fa fa-check"></i> Crear
+                           style="float:right" id="registerList" onclick="validateList(0,0)"><i class="fa fa-check"></i> Crear
                        </button>
                     </div>
                 </div>

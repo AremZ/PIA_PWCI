@@ -392,3 +392,57 @@ button.btnBarData#btnModDat{
     font-family: 'Oswald', sans-serif;
     text-align: center;
 }
+
+#createNewList {
+    margin-right: 5em;
+}
+
+textarea#descrNewList{
+    font-family: 'Roboto', sans-serif !important;
+    outline: none;
+    border: 1px solid var(--Color-1);
+    border-radius: 5px;
+    width: 100%;
+    resize: none;
+    color: var(--Color-1);
+}
+
+textarea#descrNewList:focus{
+    border: 2px solid var(--Color-2);
+    background-color: #f5f5f5;
+    outline: none;
+}
+
+input#nameList{
+    font-family: 'Roboto', sans-serif !important;
+    outline: none;
+    border: 1px solid var(--Color-1);
+    border-radius: 5px;
+    width: 100%;
+    resize: none;
+    color: var(--Color-1);
+}
+
+input#nameList:focus{
+    border: 2px solid var(--Color-2);
+    background-color: #f5f5f5;
+    outline: none;
+}
+
+select#tipoLista{
+    font-family: 'Oswald', sans-serif !important;
+    color: var(--Color-2);
+    border: 1px solid var(--Color-2);
+}
+
+select#tipoLista:focus{
+    box-shadow: 0 0 4px var(--Color-2);
+}
+
+.titleList{
+    margin-left: -15px !important;
+}
+
+.privacyList{
+    margin-left: -15px;
+}

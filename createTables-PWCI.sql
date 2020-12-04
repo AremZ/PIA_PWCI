@@ -18,6 +18,8 @@ nombre_Lista varchar(30) not null,
 descrip_Lista varchar(100),
 tipo_Lista enum('private','public') default 'private',
 usuario_Dueno int not null,
+image longblob NOT NULL,
+imageType varchar(5) NOT NULL,
 primary key(id_Lista),
 foreign key(usuario_Dueno) references usuarios(id_Usuario)
 );

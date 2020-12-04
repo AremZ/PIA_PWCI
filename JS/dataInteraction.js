@@ -60,7 +60,8 @@ req.onreadystatechange=function(data){
 req.send();
 }*/
 
-var livePort = '5501'
+//var livePort = '5501';
+var livePort = '5500';
 
 function signupUser(){
     let signupForm=document.querySelector('form#formSignUp');
@@ -150,35 +151,34 @@ function validateList(mode, action){
     var valido=true;
 
     if(mode==0){
+        if (content.value.length<5 || content.value == ""){
+            document.getElementById("nameList").className=document.getElementById("nameList").className+" error";
+            valido=false;
+        }
 
-    if (content.value.length<5){
-        document.getElementById("nameContainerList").className=document.getElementById("nameContainerList").className+" error";
-        valido=false;
+        if (content2.value.length<5 || content2.value == ""){
+            document.getElementById("descrNewList").className=document.getElementById("descrNewList").className+" error";
+            valido=false;
+        }
     }
-
-    if (content2.value.length<5){
-        document.getElementById("descrContainerList").className=document.getElementById("descrContainerList").className+" error";
-        valido=false;
-    }
-
-    
-}
     else{
         valido=true;
         content=document.getElementById("nameObj");
-        if (content.value.length<5){
-            document.getElementById("nameContainerObj").className=document.getElementById("nameContainerObj").className+" error";
+        if (content.value.length<5 || content.value == ""){
+            document.getElementById("nameList").className=document.getElementById("nameList").className+" error";
             valido=false;
         }
         content2=document.getElementById("descrObj");
-        if (content2.value.length<5){
-            document.getElementById("descrContainerObj").className=document.getElementById("descrContainerObj").className+" error";
+        if (content2.value.length<5 || content2.value == "" ){
+            document.getElementById("descrNewList").className=document.getElementById("descrNewList").className+" error";
             valido=false;
         }
 }
 if(valido){
-    if(action==0)
-        createList();
+    if(action==0){
+        createList();    
+        $('#modNewList').modal('toggle');     
+    }
     if(action==1)
         editLista();
     content.value="";
@@ -246,7 +246,7 @@ function getUserLists(){
                     "</div> <div class='col-md-10'> <div class='card-body'>"+
                     "<label class='idLista' style='font-size:10px;'>"+k.id_Lista+"</label>"+//DISPLAY NONE PENDIENTE
                     "<h2 class='col-md-12 titleList'>"+k.nombre_Lista+" :)</h2>"+
-                    "<h6 class='col-md-12 titleList'>"+tipoMensaje+"</h6>"+
+                    "<h6 class='col-md-12 privacyList'>"+tipoMensaje+"</h6>"+
                     "<p class='descrList'>"+k.descrip_Lista+"</p>"+
                     "<div class='buttons'>"+
                     "<button class='btnSeeList btn btn-outline-danger barBut'  data-toggle='modal' data-target='#editorNoticia'"+

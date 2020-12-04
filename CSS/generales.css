@@ -98,7 +98,6 @@ nav.navbar#navBarSecciones{
 }
 
 .error{
-    border: 1px solid var(--Color-2);
     border-radius: 5px;
     box-shadow: 0 0 10px var(--Color-2);
 }

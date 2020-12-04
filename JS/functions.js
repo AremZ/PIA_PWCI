@@ -1,13 +1,27 @@
-function limpiarCampo(mode){
-    
-    if(mode==0){
-        document.getElementById("nameContainerList").className=document.getElementById("nameContainerList").className.replace(" error","");
-        document.getElementById("descrContainerList").className=document.getElementById("descrContainerList").className.replace(" error","");
-    }
-    else{
-        document.getElementById("nameContainerObj").className=document.getElementById("nameContainerObj").className.replace(" error","");
-        document.getElementById("descrContainerObj").className=document.getElementById("descrContainerObj").className.replace(" error","");
-    }
+function limpiarCampo(idCampo){
+    document.getElementById(idCampo).className=document.getElementById(idCampo).className.replace(" error","");
+}
+
+function setupImage(input, display, theClass){
+    const addPhoto = document.getElementById(input);
+    const container =  document.getElementById(display);
+    const previewImage = container.querySelector(theClass);
+
+    addPhoto.addEventListener("change", function(){
+        const file = this.files[0];
+
+        if(file){
+            const reader = new FileReader();
+            changedPhoto = true;
+
+            reader.addEventListener("load", function(){
+                previewImage.setAttribute("src", this.result);
+            });
+
+            reader.readAsDataURL(file);
+
+        }
+    });
 }
 
 function modificarDatos(){
