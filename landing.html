@@ -9,12 +9,23 @@
     <link rel="stylesheet" href="CSS/landing.css">
     
     <script src="JS/dataInteraction.js"></script>
+    <script src="JS/functions.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="Imagenes/Logito.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script>
+
+        $(document).ready(function(){
+            
+            setupImage('agregarFoto', 'imgAvatar', '.preview-image');
+
+        })
+
+    </script>
         
 </head>
 
@@ -37,9 +48,10 @@
     <div class="containerWelc">
     <h1>Bienvenido a NOVA</h1>
     </div>
-    <div class="form">
+
+    <div class="form" id="contForm">
         <form id="formLogin" > 
-            <label for="user">Usuario/Email:</label><br>
+            <label for="user" id="useremail">Usuario/Email:</label><br>
             <input type="text" id="user" name="user" required placeholder="Ingrese usuario..."  ><br>
             <label for="pass">Contraseña:</label><br>
             <input type="password" id="pass" name="pass" required placeholder="Ingrese contraseña..." minlength="8"><br><br>
@@ -64,12 +76,15 @@
             <!-- Modal Content -->
             <form id="formSignUp" class="modal-content animate"  style="width: 500px;">
                 <div class="imgcontainer" style="background-color: rgb(133, 133, 133);">
-                    
-                    <img src="Imagenes/11.jpg" alt="Avatar" class="avatar"><br>
+
+                    <div id="imgAvatar">
+                        <img src="Imagenes/default-image-list.png" alt="Avatar" class="preview-image">
+                    </div>
+                    <!--<img src="Imagenes/default-image.png" alt="Avatar" class="avatar"><br>-->
                    
                     <div class="col-md-6 selectImg">
                         <label for="agregarFoto" class="custom-file-upload">Escoger avatar</label>                                
-                        <input type="file" id="agregarFoto">
+                        <input type="file" id="agregarFoto" name="agregarFoto">
                     </div>
                     <br>
                 </div>
@@ -88,17 +103,12 @@
                     <input type="radio" id="private" name="tipoCuentaRB" value="1">
                    
                     <label for="private">Privado</label>
-                    <input type="radio" id="public" name="tipoCuentaRB" value="2">
+                    <input type="radio" id="public" name="tipoCuentaRB" value="2" checked="checked">
                     <label for="public">Público</label><br>
-                   
-                 
-                    
-                </div>
     
-             
+                    <button class="btnR" onclick="signupUser()">Registrarse</button>           
+                </div>       
             </form>
-    
-            <button class="btnR" onclick="signupUser()">Registrarse</button>
         </div> 
 
         <div id="id02" class="modal">

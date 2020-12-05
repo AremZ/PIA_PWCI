@@ -63,17 +63,10 @@ nav.navbar#navBar{
 /* LANDING */
 
 
-h1{
-    color: white;
-    text-align: center;
-    padding: 2em;
-}
-
 #landingContainer{
     background-color: rgba(0, 0, 0, 0.808);
-    background-image: url('https://cdn4.vectorstock.com/i/1000x1000/04/88/gamepad-silhouette-seamless-background-vector-8530488.jpg');
+    background-image: url('../Imagenes/fondo.jpg');
     background-size: 50%;
-    
 }
 
 
@@ -112,11 +105,37 @@ input[type=button], button {
     color: var(--Active);
   }
 
+  #contForm{
+    margin-top: 6em;
+    margin-bottom: 6em;
+  }
+
+  #contForm label{
+    font-family: 'Oswald', sans-serif !important;
+  }
+
+  #contForm p{
+    margin-top: -3em;
+    font-family: 'Roboto', sans-serif !important;
+  }
+
+  #useremail{
+    margin-top: 1.5em;
+  }
+
   input[type=text], input[type=password], input[type=email]{
     border: 3px solid #555;
     border-radius: 20px;
     padding-left:15px;
     padding-right:15px;
+}
+
+div#imgAvatar img{
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 footer{
@@ -149,7 +168,16 @@ div>img, div>h4, div>p{
 }
 
 .containerWelc{
-    background-color: rgba(0, 0, 0, 0.575);
+  font-family: 'Anton', sans-serif !important;
+  background-color: rgba(0, 0, 0, 0.575);
+}
+
+.containerWelc h1{
+  font-size: 72px !important;
+  color: white;
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 /* SIGN UP MODAL */
@@ -166,7 +194,6 @@ div>img, div>h4, div>p{
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
   }
   
   /* Modal Content/Box */
@@ -217,7 +244,7 @@ div>img, div>h4, div>p{
     text-align: center;
     background: none; 
     border-style: none; 
-    background-color: black; 
+    background-color: var(--Color-6); 
     padding: 1em; 
     color:white;
     border-radius: 5px;

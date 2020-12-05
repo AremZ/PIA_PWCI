@@ -70,37 +70,38 @@ function signupUser(){
     var mail=signupForm.mail.value;
     var pass=signupForm.psw.value;
     var typeC=1;
+
+    var avatar = signupForm.agregarFoto.files[0];
     
     var ele = document.getElementsByName('tipoCuentaRB');           
     for(i = 0; i < ele.length; i++) { 
         if(ele[i].checked) 
             typeC=parseFloat(ele[i].value); 
     } 
-    if(user.length>3&&pass.length>7&&mail.length>5){
-    //e.preventDefault();
-    console.log(signupForm);
-    //console.log(e);
-    var req=new XMLHttpRequest();
-    req.onreadystatechange = function() {   
-        if(req.readyState==4&&req.status==200){
-        var data=req.responseText;
-        
-        if (data=="1") {
-          //window.location.replace("http://127.0.0.1:5501/myLists.html");
-          alert("¡Registro exitoso! Por favor inicia sesión.");
-          document.getElementById('id01').style.display='none';
-        }
-        else
-          alert("Usuario o correo ya registrado.")
-        }
-       
-    }
-    req.open('POST','http://localhost:3000/registroUser');
-    req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
-    req.send(
-        JSON.stringify({user:user, email:mail, password:pass, type:typeC})
-    );
 
+    if(user.length>3&&pass.length>7&&mail.length>5){
+        //e.preventDefault();
+        console.log(signupForm);
+        //console.log(e);
+        var req=new XMLHttpRequest();
+        req.onreadystatechange = function() {   
+            if(req.readyState==4&&req.status==200){
+                var data=req.responseText;
+                
+            if (data=="1") {
+                //window.location.replace("http://127.0.0.1:5501/myLists.html");
+                alert("¡Registro exitoso! Por favor inicia sesión.");
+                document.getElementById('id01').style.display='none';
+                }
+            else
+                alert("Usuario o correo ya registrado.")
+                }    
+        }
+        req.open('POST','http://localhost:3000/registroUser');
+        req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+        req.send(
+            JSON.stringify({user:user, email:mail, password:pass, type:typeC})
+        );
     }
     else
         alert("Revise los datos.");

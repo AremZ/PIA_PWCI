@@ -112,6 +112,13 @@ footer{
     padding-bottom: 1rem;
 }
 
+#footer {
+    position: absolute;  
+    left: 0;  
+    right: 0;  
+    bottom: 0;
+    }
+
 hr.Light{
     border-top: 1px solid var(--TitleFont);
     width: 75%;

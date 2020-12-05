@@ -137,16 +137,16 @@ h5.onlyText{
 }
 
 img.imgList{
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     border: 2px solid var(--Color-2);
     box-shadow: 0 0 10px var(--Color-2);
     border-radius: 100%;
     object-fit: cover;
     overflow: hidden;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     margin-right: 2rem;
-    margin-left: 2rem;
+    margin-left: 1rem;
     margin-bottom: 1rem;
 }
 
