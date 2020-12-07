@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+
+:root
+{
+    --NavBar: #000000;
+    --Color-2: #dc3545;
+    --Color-3:#02111B;
+    --Color-4:#ffb700;
+    --TitleFont: whitesmoke;
+    --Color-6: rgb(124, 29, 20);
+}
+
+body{
+    background-color: whitesmoke !important;
+    overflow-x: hidden;
+}
+
+
+/*--------------*/
+#cuerpoSearch{
+    margin-top: 2em; 
+}
+
+div#headerDisplay{
+  margin-left: -4em;
+}
+
+div#searchHeader{
+    background-color: black;
+    font-family: 'Oswald', sans-serif;  
+    color: var(--TitleFont);
+    text-align: left;
+    border-radius: 5px;
+}
+
+#palabraB{
+  font-size: 370%;
+}
+
+
+div#resultsBG{
+  margin-left: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-radius: 5px;
+  background-color: white;
+  width: 100%;
+}
+
+.stylerDate{
+  color:whitesmoke;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.dateInputs{
+  width:135px;
+}
+
+.checkboxes-f{
+  margin-left: 3em;
+}
+
+.checkboxes{
+  margin-left: 1em;
+}
+
+button#BTSearchFiltros{
+  margin-left: 3em;
+  margin-bottom: 10px;
+}
+
+.searchResult, .mostViewed{
+  font-family: 'Roboto', sans-serif;
+  font-size: 95%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.searchResult .title, .mostViewed .title {
+  font-family: 'Oswald', sans-serif;
+}
+
+.searchResult button, .mostViewed button{
+  font-family: 'Oswald', sans-serif;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.searchResult .pubDate, .mostViewed .pubDate{
+  font-family: 'Roboto', sans-serif;
+  font-size: 90%;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.mostViewed .card-img-top{
+    height: 100px;
+    object-fit: cover;
+}
+
+div#masVisto{
+  background-color: black;
+  font-family: 'Oswald', sans-serif;  
+  font-size: 250%;
+  color: var(--TitleFont);
+  text-align: left;
+  border-radius: 5px;
+}
+
+div#masVistoBG{
+    margin-left: -0.8em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-radius: 5px;
+    background-color: white;
+    width: 100%;
+}
+
+#options-container{
+  margin-left: 52em;
+}
+
+.resultList{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.resultList .buttons{
+    font-family: 'Oswald', sans-serif;
+    margin-top: 2rem;
+    float: right;
+    margin-bottom: 1rem;
+}
+
+.resultList .buttonsUser{
+    font-family: 'Oswald', sans-serif;
+    margin-top: 1rem;
+}
+
+.resultList .buttonsUser button{
+  width: 100%;
+}
+
+.resultList .barBut{
+    margin-left: 1rem;
+}
+
+.resultList h2.titleList{
+    font-family: 'Oswald', sans-serif;
+    margin-left: 3.5em;
+}
+
+.resultList h2.userName{
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+}
+
+.resultList p.descrList{
+    font-family: 'Roboto', sans-serif;
+    margin-left: 8em;
+}
+
+.resultList .privacyList{
+  margin-left: 7em;
+}
+
+.resultList img.imgList{
+    width: 200px;
+    height: 200px;
+    border: 2px solid var(--Color-2);
+    box-shadow: 0 0 10px var(--Color-2);
+    border-radius: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    margin-top: 1.5rem;
+    margin-right: 2rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.resultList img.imgUser{
+    width: 150px;
+    height: 150px;
+    border: 2px solid var(--Color-2);
+    box-shadow: 0 0 10px var(--Color-2);
+    border-radius: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    margin-top: 1.5rem;
+    margin-left: 3.8rem;
+}
+
+/*------------TARJETAS RESULTADO-----------------*/
+.tituloSeccion{
+    background-color: black;
+    font-family: 'Oswald', sans-serif;  
+    font-size: 200%;
+    color: var(--TitleFont);
+    text-align: left;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.tarjetaResult{
+    margin: 2em; 
+    border-style: none;
+    margin: auto;
+    border-style: none !important;
+}
+
+.card-title a{
+    background-color: black;
+    color: var(--Color-2) !important ;
+    background-size: 500px;
+    font-family: 'Oswald', sans-serif;  
+    font-size: 150%;
+    padding-right: 50px;
+    padding-left: 10px;
+}
+
+.imgTarjeta{
+    padding-left: 1em !important;
+    padding-bottom: 2em;
+    max-width: 200px;
+    
+}
+
+
+
+@media (min-width: 40rem) {
+    .tarjetaResult{
+      width: 50%;
+      
+      
+    }
+  }
+  
+  @media (min-width: 56rem) {
+    .tarjetaResult{
+      width: 60%;
+    }
+  }
+
+  @media (min-width: 72rem) {
+    .tarjetaResult{
+      width: 80%;
+    }
+
+  }

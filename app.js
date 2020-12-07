@@ -15,17 +15,15 @@ var connection=mysql.createConnection({host:'localhost', user:'PruebaDB3',passwo
 //var connection=mysql.createConnection({host:'localhost', user:'root',password:'',database:'pwcidb'});
 
 app.listen(puerto,()=>{
-    console.log("Funcionando en puerto 3mil");
+    console.log("Funcionando en puerto " + puerto + ".");
 
 });
-
 
 connection.connect((error)=>{
     if(error)
         throw error;
     console.log("La base de datos funciona");
 });
-
 
 app.get("/getUser/:id", (req,res)=>{
 
@@ -52,9 +50,6 @@ app.post("/loginUser", (req,res)=>{
     const user = req.body.user;
     //const mail=req.body.email;
     const pass = req.body.password;
-    
-
-
    // const sql = "SELECT id_usuario,nombre_Usuario from usuarios where nombre_Usuario='"+user+"' AND password_Usuario='"+pass+"';";
 
     const sql = "SELECT id_usuario from usuarios where (nombre_Usuario='"+user+"' AND password_Usuario='"+pass+"') OR (correo_Usuario='"+user+"' AND password_Usuario='"+pass+"');";
@@ -70,7 +65,6 @@ app.post("/loginUser", (req,res)=>{
            res.send("0");
        }
     });
-
 });
 
 app.post("/registroUser", (req,res)=>{
@@ -340,6 +334,120 @@ app.get("/getAllUsers", (req,res)=>{
        }
        else{
            res.send("Not results");
+       }
+    });
+
+});
+
+app.post("/getUserData", (req,res)=>{
+    
+   const id = req.body.id;
+   console.log(req.body);
+   const sql = 'CALL sp_getUserData(' + id + ');';
+
+   connection.query(sql, (err, results)=>{
+
+      if(err)throw err;
+      if(results.length>0){
+          res.send(results);
+      }
+      else{
+        res.send("0");
+      }
+   });
+});
+
+app.delete("/bajaMyUser", (req,res)=>{
+
+    const userID = req.body.id;
+    const sql = "CALL sp_bajaUser(" + userID + ");";
+
+    connection.query(sql, (err, results, fields)=>{
+        if(err)  throw err;
+        
+        if(results.affectedRows>0)
+            res.send("1");
+        else
+            res.send("0");
+    });
+
+});
+
+app.put("/updateMyData", (req,res)=>{
+    
+    const userID = req.body.id;
+    const username = req.body.user;
+    const email=req.body.email;
+    const pass=req.body.password;
+    const usertype=req.body.type;
+    
+    const sql = "CALL sp_updateUser("+userID+",'"+username+"','"+email+"','"+pass+"',"+usertype+");";
+
+    connection.query(sql, (err, results, fields)=>{
+
+       if(err)  throw err;
+       
+       if(results.affectedRows>0){
+        res.send("1");
+        }
+    else{
+        res.send("0");
+    }
+    });
+
+});
+
+app.get("/searching-lists/:keyword", (req,res)=>{
+
+    const palBusq = req.params.keyword;
+    console.log(req.params);
+    const sql = "CALL sp_searchLists('" + palBusq + "');";
+
+    connection.query(sql, (err, results)=>{
+
+       if(err)throw err;
+       if(results.length>0){
+           res.send(results);
+       }
+       else{
+           res.send("0");
+       }
+    });
+
+});
+
+app.get("/searching-users/:keyword", (req,res)=>{
+
+    const palBusq = req.params.keyword;
+    console.log(req.params);
+    const sql = "CALL sp_searchUsers('" + palBusq + "');";
+
+    connection.query(sql, (err, results)=>{
+
+       if(err)throw err;
+       if(results.length>0){
+           res.send(results);
+       }
+       else{
+           res.send("0");
+       }
+    });
+
+});
+
+app.get("/isOwner/:loggedUser", (req,res)=>{
+
+    const userID = req.params.loggedUser;
+    const sql = "CALL sp_getUserLists(" + userID + ");";
+
+    connection.query(sql, (err, results)=>{
+
+       if(err)throw err;
+       if(results.length>0){
+           res.send(results);
+       }
+       else{
+           res.send("0");
        }
     });
 

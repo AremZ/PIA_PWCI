@@ -21,9 +21,16 @@
 
     <script>
         $(document).ready(function(){
+            var currentUser = localStorage.getItem("currentUser");
+
             //getLogged();
             getUserLists();
             setupImage('addFotoList', 'imgList', '.preview-image');
+
+            if(currentUser == "0" || currentUser == null){
+                window.location.href='landing.html';
+            }
+
             var id;
             $("body").on("click", ".btnDeleteList",function(){
                 //alert("¡Todo funciona!");
@@ -38,6 +45,11 @@
             $("#btnConfirmDelList").click(function() {
                 deleteList(id);
             });
+
+            $("body").on("click", "#BTSearch",function(){          
+                var palBusq =document.getElementById("BRSearch").value;
+                gotoSearch(palBusq);
+            });
             
             $("body").on("click", ".btnSeeList",function(){
                 //alert("¡Todo funciona!");
@@ -48,6 +60,11 @@
                 //alert(id);
                 verListaPage(id);
                 
+            });
+
+            $("#myProfile").click(function() {
+                localStorage.setItem("displayUser",currentUser);
+                window.location.href='profile.html';
             });
 
         });
@@ -80,7 +97,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMA" role="button"
                             data-toggle="dropdown">Mi Cuenta</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMA">
-                            <a class="dropdown-item" href="profile.html">Mi Perfil</a>
+                            <a class="dropdown-item" id="myProfile">Mi Perfil</a>
                             <a class="dropdown-item" href="myLists.html">Mis Listas</a>
                             <a class="dropdown-item" onclick="logOut()" >Cerrar Sesion</a>
                         </div>
@@ -139,7 +156,7 @@
     
                 <!-- Modal content-->
                 <div class="modal-content">
-                    <div class="modal-header" id="hLogin">
+                    <div class="modal-header" id="hRegList">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div id="createList" class="modal-body">
@@ -170,7 +187,7 @@
                                        </div>
                                        <div class="col-md-4 form-group">
                                            <form accept-charset="utf-8" method="POST"  id="sentImg" enctype="multipart/form-data">  
-                                                <label for="addFotoList" class="custom-file-upload">Agregar una foto de portada...</label>                                
+                                                <label for="addFotoList" class="custom-file-upload">Agregar foto de portada...</label>                                
                                                 <input type="file" id="addFotoList" name="addFotoList">
                                            </form>                                                        
                                        </div>

@@ -83,6 +83,11 @@ button{
     font-family: 'Oswald', sans-serif !important;
 }
 
+#btnObtenidoObj{
+    font-family: 'Oswald', sans-serif !important;
+    width: 100% !important;
+}
+
 button.newList{  
     margin-top: 2em;
     float: right;
@@ -136,7 +141,7 @@ h5.onlyText{
     text-align: center;
 }
 
-img.imgList{
+img.imgList, img.imgObjEdit{
     width: 200px;
     height: 200px;
     border: 2px solid var(--Color-2);
@@ -160,7 +165,7 @@ img.imgList{
     border-radius: 5px;
 }
 
-div#imgList img, div#imgObj img{
+div#imgList img, div#imgObj img, div#imgObjEdit img{
     width: 200px;
     height: 200px;
     border: 2px solid var(--Color-2);
@@ -213,13 +218,13 @@ div#StateSel{
     margin-top: 4em;
 }
 
-select#selectState{
+select#selectState, select#tipoListaE{
     font-family: 'Oswald', sans-serif !important;
     color: var(--Color-2);
     border: 1px solid var(--Color-2);
 }
 
-select#selectState:focus{
+select#selectState:focus, select#tipoListaE:focus{
     box-shadow: 0 0 4px var(--Color-2);
 }
 
@@ -322,11 +327,15 @@ hr.topProfile{
 }
 
 
-hr.imgProfile{
+hr#imgProfile{
     border: 1px solid black;
     width: 80%;
     margin-top: 2rem;
     margin-bottom: 1rem;
+}
+
+div.container-datos{
+    margin-top: 1em;
 }
 
 div.container-datos label{
@@ -397,7 +406,7 @@ button.btnBarData#btnModDat{
     margin-right: 5em;
 }
 
-textarea#descrNewList{
+textarea#descrNewList, textarea#descrObj{
     font-family: 'Roboto', sans-serif !important;
     outline: none;
     border: 1px solid var(--Color-1);
@@ -413,7 +422,7 @@ textarea#descrNewList:focus{
     outline: none;
 }
 
-input#nameList{
+input#nameList, input#nameObj{
     font-family: 'Roboto', sans-serif !important;
     outline: none;
     border: 1px solid var(--Color-1);
@@ -423,19 +432,19 @@ input#nameList{
     color: var(--Color-1);
 }
 
-input#nameList:focus{
+input#nameList:focus, input#nameObj:focus{
     border: 2px solid var(--Color-2);
     background-color: #f5f5f5;
     outline: none;
 }
 
-select#tipoLista{
+select#tipoLista, select#estadoObjetoE{
     font-family: 'Oswald', sans-serif !important;
     color: var(--Color-2);
     border: 1px solid var(--Color-2);
 }
 
-select#tipoLista:focus{
+select#tipoLista:focus, select#estadoObjetoE:focus{
     box-shadow: 0 0 4px var(--Color-2);
 }
 
@@ -445,4 +454,13 @@ select#tipoLista:focus{
 
 .privacyList{
     margin-left: -15px;
+}
+
+#userType{
+    float: right;
+    margin-bottom: -0em;
+}
+
+#publicUser{
+    margin-right: 1em;
 }

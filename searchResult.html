@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova | Mis Listas</title>
+    <title>Nova | Buscar</title>
 
-    <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/generales.css">
-    <script src="JS/functions.js"></script>
-    <link rel="shortcut icon" type="image/x-icon" href="Imagenes/LogoPag.png" />
+    <link rel="stylesheet" href="CSS/searchResult.css">
+    <script src="JS/dataInteraction.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="Imagenes/Logito.png" />
     <!--<script src="JS/functions.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -21,7 +21,41 @@
 
     <script>
         $(document).ready(function(){
+            var keyword = localStorage.getItem("busqueda");
+            var currentUser = localStorage.getItem("currentUser");
+            getSearching(keyword);
+
+            if(currentUser == "0" || currentUser == null){
+                window.location.href='landing.html';
+            }
+
+            $("body").on("click", ".btnSeeList",function(){
+                var parent=$(this).parent();
+                parent=parent.parent();
+                id = $(parent).find(".idLista").text();
+                verListaPage(id);               
+            });
             
+            $("body").on("click", ".btnSeeUser",function(){
+                var parent=$(this).parent();
+                parent=parent.parent();
+                id = $(parent).find(".idUser").text();
+                localStorage.setItem("displayUser",id);
+                window.location.href='profile.html';
+            });
+
+            $("body").on("click", "#BTSearch",function(){          
+                var palBusq =document.getElementById("BRSearch").value;
+                gotoSearch(palBusq);
+            });
+
+            $("#myProfile").click(function() {
+                localStorage.setItem("displayUser",currentUser);
+                window.location.href='profile.html';
+            });
+
+            document.getElementById("BRSearch").value=keyword;
+            document.getElementById("palabraB").innerHTML="Resultados de: " + keyword;
         });
     </script>
 </head>
@@ -52,7 +86,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMA" role="button"
                             data-toggle="dropdown">Mi Cuenta</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMA">
-                            <a class="dropdown-item" href="profile.html">Mi Perfil</a>
+                            <a class="dropdown-item" id="myProfile">Mi Perfil</a>
                             <a class="dropdown-item" href="myLists.html">Mis Listas</a>
                             <a class="dropdown-item" href="landing.html">Cerrar Sesion</a>
                         </div>
@@ -62,339 +96,35 @@
         </div>
     </nav>
 
-    <div class="container-fluid padding">
+    <div class="container-fluid padding" id="cuerpoSearch">          
         <div class="row">
-            <div class="col-md-2">
-                <img class="card-img imgCover" src="Imagenes/BG3.png">
-            </div>
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-12"><br>
-                        <h3 class="titleLista">Buscar usuario:</h1>
-                        <h1 class="titleLista">"PALABRA"</h1>
+            <div class="col-md-12">             
+                <div class="row" id="headerDisplay">          
+                    <div class="col-md-1"></div>             
+                    <div class="col-md-10" id="searchHeader">
+                        <label id="palabraB"> Resultados de: Ejemplo</label>
+                        <div id="options-container">
+                            <input type="radio" name="filtroBusc" id="filtList" value="1" class="checkboxes-f" checked> Listas
+                            <input type="radio" name="filtroBusc" id="filtUser" value="2" class="checkboxes"> Usuarios
+                            <button class="btn btn-outline-danger" onclick="getSearchData()" id="BTSearchFiltros">Buscar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <hr class="topTitleHR">
+                <div class="col-md-11" id="resultsBG">          
+                    <div class="row" id="displayResults">
+                
+                    </div>  
+                </div>
+                </div>
     
-      
-        <div class="row justify-content-center">
-            <div class="col-lg-3">
-                <div class="card card-user">
-                    <div class="card">
-                        <div class="row no-gutters">
-                            <div class="col-auto">
-                                <img class="card-img imgUserSearch" src="Imagenes/PSWSH.jpg">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-title titleUser">
-                                        NOMBRE USUARIO   
-                                    </div>   
-                                    <div class="col-md-9">
-                                        <button class="btn btn-outline-danger barButObj" type="" id="btnVerPerfil"><i class="fa fa-eye"></i> Ver</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                  </div>
-                </div>
             </div>
-          
-            <div class="col-lg-3">
-                <div class="card card-user">
-                    <div class="card">
-                        <div class="row no-gutters">
-                            <div class="col-auto">
-                                <img class="card-img imgUserSearch" src="Imagenes/PSWSH.jpg">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-title titleUser">
-                                        NOMBRE USUARIO   
-                                    </div>   
-                                    <div class="col-md-9">
-                                        <button class="btn btn-outline-danger barButObj" type="" id="btnVerPerfil"><i class="fa fa-eye"></i> Ver</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                  </div>
-                </div>
-            </div>
-
-            
-            <div class="col-lg-3">
-                <div class="card card-user">
-                    <div class="card">
-                        <div class="row no-gutters">
-                            <div class="col-auto">
-                                <img class="card-img imgUserSearch" src="Imagenes/PSWSH.jpg">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-title titleUser">
-                                        NOMBRE USUARIO   
-                                    </div>   
-                                    <div class="col-md-9">
-                                        <button class="btn btn-outline-danger barButObj" type="" id="btnVerPerfil"><i class="fa fa-eye"></i> Ver</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                  </div>
-                </div>
-            </div>
-
-       
         </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-3">
-                <div class="card card-user">
-                    <div class="card">
-                        <div class="row no-gutters">
-                            <div class="col-auto">
-                                <img class="card-img imgUserSearch" src="Imagenes/PSWSH.jpg">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-title titleUser">
-                                        NOMBRE USUARIO   
-                                    </div>   
-                                    <div class="col-md-9">
-                                        <button class="btn btn-outline-danger barButObj" type="" id="btnVerPerfil"><i class="fa fa-eye"></i> Ver</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                  </div>
-                </div>
-            </div>
-          
-            <div class="col-lg-3">
-                <div class="card card-user">
-                    <div class="card">
-                        <div class="row no-gutters">
-                            <div class="col-auto">
-                                <img class="card-img imgUserSearch" src="Imagenes/PSWSH.jpg">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-title titleUser">
-                                        NOMBRE USUARIO   
-                                    </div>   
-                                    <div class="col-md-9">
-                                        <button class="btn btn-outline-danger barButObj" type="" id="btnVerPerfil"><i class="fa fa-eye"></i> Ver</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                  </div>
-                </div>
-            </div>
-
-            
-            <div class="col-lg-3">
-                <div class="card card-user">
-                    <div class="card">
-                        <div class="row no-gutters">
-                            <div class="col-auto">
-                                <img class="card-img imgUserSearch" src="Imagenes/PSWSH.jpg">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-title titleUser">
-                                        NOMBRE USUARIO   
-                                    </div>   
-                                    <div class="col-md-9">
-                                        <button class="btn btn-outline-danger barButObj" type="" id="btnVerPerfil"><i class="fa fa-eye"></i> Ver</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                  </div>
-                </div>
-            </div>
-
-       
-        </div>
-
-        
-
-
     </div>
     
-        <!------ Registro de Lista ------>
-        <div id="modEditList" class="modal fade">
-            <div class="modal-dialog long-modal">
     
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div id="createList" class="modal-body">
-                        <div>
-                            <h1 id="titleAdmin">Editar lista</h1>
-                            <hr>
-                        </div>
-                       <form action="/action_page.php">
-                           <div class="row">
-                               <div class="col-md-1"></div>
-                               <div class="col-md-10">
-                                   <div class="row">
-                                       <div class="col-md-12 form-group">
-                                           <label for="nameList">Nombre de la lista:</label>
-                                           <div id="nameContainerList">
-                                             <input type="text" class="form-control" id="nameList" onfocus="limpiarCampo(0)">
-                                           </div>
-                                       </div>
-                                       <div class="col-md-12 form-group">
-                                           <label for="descrListxt">Descripcion:</label>
-                                           <div id="descrContainerList">
-                                               <textarea name="descrListxt" id="descrList" class="col-md-12" onfocus="limpiarCampo(0)"></textarea>
-                                           </div>
-                                       </div>
-                                       <div class="col-md-4 form-group" id="imgList">
-                                           <img src="Imagenes/DisplayDGP1.png">
-                                       </div>
-                                       <div class="col-md-4 form-group">
-                                           <label for="addFotoList" class="custom-file-upload">Agregar una foto de portada...</label>                                
-                                           <input type="file" id="addFotoList">
-                                       </div>
-                                       <div class="col-md-4 form-group" id="StateSel">
-                                        <label for="selectState">Elija la privacidad de su lista</label>                                
-                                        <select class="form-control" id="selectState">
-                                            <option>Pública</option>
-                                            <option>Privada</option>
-                                        </select>
-                                       </div>
-                                   </div>
-                               </div>
-                               <div class="col-md-1"></div>
-                           </div>
-                       </form>
-                       <hr>
-                       <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" id="cancelsaveList" data-toggle="modal" data-target="#modEditList"><i class="fa fa-times"></i> Cancelar
-                       </button>
-                       <!--data-toggle="modal"-->
-                       <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" onclick="validateList(0)" id="saveList"  data-target="#modEditList"><i class="fa fa-floppy-o"></i> Guardar cambios
-                       </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!------ Registro de Objeto ------>
-        <div id="modNewObj" class="modal fade">
-            <div class="modal-dialog long-modal">
     
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div id="createObj" class="modal-body">
-                        <div>
-                            <h1>Nuevo Objeto</h1>
-                            <hr>
-                        </div>
-                       <form action="/action_page.php">
-                           <div class="row">
-                               <div class="col-md-1"></div>
-                               <div class="col-md-10">
-                                   <div class="row">
-                                       <div class="col-md-12 form-group">
-                                           <label for="nameObj">Nombre de objeto:</label>
-                                           <div id="nameContainerObj">
-                                             <input type="text" class="form-control" id="nameObj" onfocus="limpiarCampo(1)">
-                                           </div>
-                                       </div>
-                                       <div class="col-md-12 form-group">
-                                           <label for="descrObjtxt">Descripcion:</label>
-                                           <div id="descrContainerObj">
-                                               <textarea name="descrObjtxt" id="descrObj" class="col-md-12" rows="4" onfocus="limpiarCampo(1)"></textarea>
-                                           </div>
-                                       </div>
-                                       <div class="col-md-6 form-group" id="imgObj">
-                                           <img src="Imagenes/DisplayDGP1.png">
-                                       </div>
-                                       <div class="col-md-6 form-group">
-                                           <label for="addFotoObj" class="custom-file-upload">Agregar una foto de portada...</label>                                
-                                           <input type="file" id="addFotoObj">
-                                       </div>
-                                   </div>
-                               </div>
-                               <div class="col-md-1"></div>
-                           </div>
-                       </form>
-                       <hr>
-                       <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" id="cancelsaveObj" data-toggle="modal" data-target="#modNewObj"><i class="fa fa-times"></i> Cancelar
-                       </button>
-                       <!-- data-toggle="modal"-->
-                       <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" onclick="validateList(1)" id="saveObj" data-target="#modNewObj"><i class="fa fa-check"></i> Crear
-                       </button>
-                    </div>
-                </div>
-            </div>
-        </div>
     
-        <div id="confirmDeleteList" class="modal fade">
-            <div class="modal-dialog">
-    
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-    
-                        <h5 class="onlyText">¿Está seguro que desea eliminar su lista?</h5>
-                    
-                        <hr>
-                        <button type="button" class="btn btn-outline-danger" style="float:left" id="btnConfirmDelList"
-                        data-toggle="modal" data-target="#confirmDeleteList"></a><i class="fa fa-fire">                        
-                        </i> Confirmar</button>
-    
-                        <button type="button" class="btn btn-outline-danger" 
-                            style="float:right" id="btnCancelList" data-toggle="modal" data-target="#confirmDeleteList"><i class="fa fa-times"></i> Cancelar</button>
-                    
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <div id="confirmDeleteObj" class="modal fade">
-            <div class="modal-dialog">
-    
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-    
-                        <h5 class="onlyText">¿Está seguro que desea eliminar este objeto?</h5>
-                    
-                        <hr>
-                        <button type="button" class="btn btn-outline-danger" style="float:left" id="btnConfirmDelObj"
-                        data-toggle="modal" data-target="#confirmDeleteObj"></a><i class="fa fa-fire">                        
-                        </i> Confirmar</button>
-    
-                        <button type="button" class="btn btn-outline-danger" 
-                            style="float:right" id="btnCancelObj" data-toggle="modal" data-target="#confirmDeleteObj"><i class="fa fa-times"></i> Cancelar</button>
-                    
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    <!------ Footer ------>
+         <!------ Footer ------>
     <footer>
         <div class="container-fluid padding">
             <div class="row text-center">
