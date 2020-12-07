@@ -137,8 +137,8 @@ CREATE PROCEDURE sp_getUserLists(
 	IN in_userID int
 )
 BEGIN 
-	SELECT id_Usuario, nombre_Usuario
-	FROM usuarios WHERE estado = 1 AND tipo_Cuenta = 'public' AND (nombre_Usuario LIKE CONCAT("%",in_palClav,"%"));
+	SELECT id_Usuario, id_Lista, nombre_Lista, descrip_Lista, tipo_Lista, nombre_Usuario, estado
+	FROM ListxUser WHERE id_Usuario = in_userID;
 END//
 DELIMITER ;
 

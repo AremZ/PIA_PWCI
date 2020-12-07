@@ -1,7 +1,6 @@
 CREATE DATABASE pwcidb;
 USE pwcidb;
 
-
 CREATE TABLE usuarios(
 id_Usuario int auto_increment,
 nombre_Usuario varchar(20) not null,
