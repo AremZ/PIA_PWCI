@@ -40,13 +40,12 @@
                 var parent=$(this).parent();
                 parent=parent.parent();
                 objModificar = $(parent).find(".idObjeto").text();
-                alert(objModificar);
+                getObjetoData(objModificar);
             });
             $("body").on("click", ".btnDeleteObj",function(){
                 var parent=$(this).parent();
                 parent=parent.parent();
                 objModificar = $(parent).find(".idObjeto").text();
-                alert(objModificar);
             });
 
             $("body").on("click", "#BTSearch",function(){          
@@ -312,8 +311,8 @@
                                        </div>
 
                                     <div class="col-md-4 form-group" id="StateSel">
-                                        <label for="estadoObjetoE">Elija el estado:</label>                                
-                                        <select class="form-control" id="estadoObjetoE">
+                                        <label for="estadoObjetoEd">Elija el estado:</label>                                
+                                        <select class="form-control" id="estadoObjetoEd">
                                             <option value="1">Buscando</option>
                                             <option value="2">Obtenido</option>
                                         </select>

@@ -11,8 +11,8 @@ var app=express();
 app.use(cors());
 app.use(express.json());
 
-var connection=mysql.createConnection({host:'localhost', user:'PruebaDB3',password:'password',database:'pwcidb'});
-//var connection=mysql.createConnection({host:'localhost', user:'root',password:'',database:'pwcidb'});
+//var connection=mysql.createConnection({host:'localhost', user:'PruebaDB3',password:'password',database:'pwcidb'});
+var connection=mysql.createConnection({host:'localhost', user:'root',password:'',database:'pwcidb'});
 
 app.listen(puerto,()=>{
     console.log("Funcionando en puerto " + puerto + ".");
@@ -117,7 +117,7 @@ app.post("/altaLista", (req,res)=>{
 
 });
 
-app.post("/editarLista", (req,res)=>{
+app.put("/editarLista", (req,res)=>{
 
     const name = req.body.name;
     const desc=req.body.desc;
@@ -141,7 +141,7 @@ app.post("/editarLista", (req,res)=>{
 
 });
 
-app.post("/bajaLista", (req,res)=>{
+app.delete("/bajaLista", (req,res)=>{
 
     const idL = req.body.lista;
 
@@ -228,7 +228,7 @@ app.post("/addObjeto", (req,res)=>{
 
 });
 
-app.post("/editObjeto", (req,res)=>{
+app.put("/editObjeto", (req,res)=>{
 
     const id = req.body.obj;
     const name = req.body.name;
@@ -253,7 +253,7 @@ app.post("/editObjeto", (req,res)=>{
 
 });
 
-app.post("/bajaObjeto", (req,res)=>{
+app.delete("/bajaObjeto", (req,res)=>{
 
     const idO = req.body.id;
 

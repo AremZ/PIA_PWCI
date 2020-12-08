@@ -37,7 +37,6 @@ function validateLogin(){
 
 function getLogged(){
     var currentUser = localStorage.getItem("currentUser");
-    alert(currentUser);
 }
 function logOut(){
     localStorage.setItem("currentUser", 0);
@@ -62,8 +61,8 @@ req.onreadystatechange=function(data){
 req.send();
 }*/
 
-//var livePort = '5501';
-var livePort = '5500';
+var livePort = '5501';
+//var livePort = '5500';
 
 function signupUser(){
     let signupForm=document.querySelector('form#formSignUp');
@@ -251,7 +250,7 @@ function getUserLists(){
                         "<div class='col-md-12'> <div class='card myList'> <div class='row no-gutters'>"+
                         "<div class='col-md-2'> <img class='card-img imgList' src='Imagenes/default-image-list.png'>"+
                         "</div> <div class='col-md-10'> <div class='card-body'>"+
-                        "<label class='idLista' style='font-size:10px;'>"+k.id_Lista+"</label>"+//DISPLAY NONE PENDIENTE
+                        "<label class='idLista' style='font-size:10px; display:none;'>"+k.id_Lista+"</label>"+//DISPLAY NONE PENDIENTE
                         "<h2 class='col-md-12 titleList'>"+k.nombre_Lista+"</h2>"+
                         "<h6 class='col-md-12 privacyList'>"+tipoMensaje+"</h6>"+
                         "<p class='descrList'>"+k.descrip_Lista+"</p>"+
@@ -290,7 +289,7 @@ function deleteList(idLista){
         }
        
     }
-    req.open('POST','http://localhost:3000/bajaLista');
+    req.open('DELETE','http://localhost:3000/bajaLista');
     req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
     req.send(
         JSON.stringify({lista:idLista})
@@ -313,7 +312,7 @@ function deleteListSelf(idLista){
         }
        
     }
-    req.open('POST','http://localhost:3000/bajaLista');
+    req.open('DELETE','http://localhost:3000/bajaLista');
     req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
     req.send(
         JSON.stringify({lista:idLista})
@@ -340,7 +339,6 @@ function verListaPage(id){
 
 function getLista(){
     var idLista = localStorage.getItem("lista");
-    //document.getElementById("titleLista").innerHTML = "holi";
     var nombreLista=document.getElementById("titleLista");
     var descripLista=document.getElementById("displayDescrList");
     var tipo=document.getElementById("tipoLista");
@@ -350,9 +348,7 @@ function getLista(){
         if(req.readyState==4&&req.status==200){
             var datos=data.target.response;
             var parse=JSON.parse(datos);
-            //var valor=parse.length;
             parse.forEach((k,v)=>{
-               //alert("Tengo la información.");
                if(k.tipo_Lista=="private")
                tipoMensaje="Privada"
             else
@@ -373,9 +369,7 @@ function getLista(){
 }
 
 function editLista(){
-    //alert("Vas a editar la lista.");
-
-
+    
     let newListForm=document.querySelector('form#formEditList');
    
     var nameL=newListForm.nameList.value;
@@ -387,7 +381,6 @@ function editLista(){
     var list=localStorage.getItem("lista");
 
     if(nameL.length>3&&descL.length>10&&typeC!=0){
-    //console.log(newListForm);
     var req=new XMLHttpRequest();
     req.onreadystatechange = function() {   
         if(req.readyState==4&&req.status==200){
@@ -402,7 +395,7 @@ function editLista(){
         }
        
     }
-    req.open('POST','http://localhost:3000/editarLista');
+    req.open('PUT','http://localhost:3000/editarLista');
     req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
     req.send(
         JSON.stringify({name:nameL, desc:descL, type:typeC, list:list})
@@ -423,7 +416,6 @@ function addObjeto(){
     var descO=newListForm.descrObj.value;
     var stateO=0;
     var e = document.getElementById("estadoObjetoE");
-    alert(e.value);
     stateO= parseFloat(e.value);
 
     var currentList = localStorage.getItem("lista");
@@ -437,7 +429,6 @@ function addObjeto(){
         
         if (data=="1"){
           alert("¡Objeto añadido!")
-          //refreshListas();
           refreshObjetos();
         }
         else
@@ -456,6 +447,27 @@ function addObjeto(){
         alert("Revise los datos.");
 }
 
+function getObjetoData(id){
+    let editObjForm=document.querySelector('form#formEditObject');
+
+    var req=new XMLHttpRequest();
+    req.onreadystatechange = function(data) {   
+        if(req.readyState==4&&req.status==200){
+            var datos=data.target.response;
+            var parse=JSON.parse(datos);
+            //var valor=parse.length;
+            parse.forEach((k,v)=>{
+               editObjForm.nameObj.value=k.nombre_Objeto;
+               editObjForm.descrObj.value=k.descrip_Objeto;
+            });
+        }
+    }
+    req.open('POST','http://localhost:3000/getObjeto');
+    req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+    req.send(
+        JSON.stringify({idOb:id})
+    );
+}
 
 function editObjeto(id){
    
@@ -464,11 +476,10 @@ function editObjeto(id){
     var nameO=newListForm.nameObj.value;
     var descO=newListForm.descrObj.value;
     var stateO=0;
-    var e = document.getElementById("estadoObjetoE");
+    var e = document.getElementById("estadoObjetoEd");
     stateO= parseFloat(e.value);
 
     if(nameO.length>3&&descO.length>10&&stateO!=0){
-    //console.log(newListForm);
     var req=new XMLHttpRequest();
     req.onreadystatechange = function() {   
         if(req.readyState==4&&req.status==200){
@@ -484,7 +495,7 @@ function editObjeto(id){
         }
        
     }
-    req.open('POST','http://localhost:3000/editObjeto');
+    req.open('PUT','http://localhost:3000/editObjeto');
     req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
     req.send(
         JSON.stringify({obj:id, name:nameO, desc:descO, state:stateO})
@@ -510,7 +521,7 @@ function deleteObjeto(idObjeto){
         }
        
     }
-    req.open('POST','http://localhost:3000/bajaObjeto');
+    req.open('DELETE','http://localhost:3000/bajaObjeto');
     req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
     req.send(
         JSON.stringify({id:idObjeto})
@@ -641,7 +652,6 @@ function updateUserData(){
                          var data=req.responseText;
                          
                      if (data=="1") {
-                         //window.location.replace("http://127.0.0.1:5501/myLists.html");
                          //Sign in con credenciales.
                          alert("Datos actualizados correctamente!");
                          location.reload();
@@ -685,7 +695,7 @@ function getUserListstoProfile(userDisplay){
                         "<div class='col-md-12'> <div class='card myList'> <div class='row no-gutters'>"+
                         "<div class='col-md-2'> <img class='card-img imgList' src='Imagenes/default-image-list.png'>"+
                         "</div> <div class='col-md-10'> <div class='card-body'>"+
-                        "<label class='idLista' style='font-size:10px;'>"+k.id_Lista+"</label>"+//DISPLAY NONE PENDIENTE
+                        "<label class='idLista' style='font-size:10px; display:none;'>"+k.id_Lista+"</label>"+//DISPLAY NONE PENDIENTE
                         "<h2 class='col-md-12 titleList'>"+k.nombre_Lista+"</h2>"+
                         "<h6 class='col-md-12 privacyList'>"+tipoMensaje+"</h6>"+
                         "<p class='descrList'>"+k.descrip_Lista+"</p>"+
@@ -731,7 +741,7 @@ function getSearching(keyword){
                             "<div class='col-md-6'> <div class='card resultList'> <div class='row no-gutters'>"+
                             "<div class='col-md-2'> <img class='card-img imgList' src='Imagenes/default-image-list.png'>"+
                             "</div> <div class='col-md-10'> <div class='card-body'>"+
-                            "<label class='idLista' style='font-size:10px;'>"+element.id_Lista+"</label>"+//DISPLAY NONE PENDIENTE
+                            "<label class='idLista' style='font-size:10px; display:none'>"+element.id_Lista+"</label>"+//DISPLAY NONE PENDIENTE
                             "<h2 class='col-md-12 titleList'>"+element.nombre_Lista+"</h2>"+
                             "<h6 class='col-md-12 privacyList'> Creada por: "+element.nombre_Usuario+"</h6>"+
                             "<p class='descrList'>"+element.descrip_Lista+"</p>"+
@@ -776,7 +786,7 @@ function getSearchData(){
                                 "<div class='col-md-6'> <div class='card resultList'> <div class='row no-gutters'>"+
                                 "<div class='col-md-2'> <img class='card-img imgList' src='Imagenes/default-image-list.png'>"+
                                 "</div> <div class='col-md-10'> <div class='card-body'>"+
-                                "<label class='idLista' style='font-size:10px;'>"+element.id_Lista+"</label>"+//DISPLAY NONE PENDIENTE
+                                "<label class='idLista' style='font-size:10px; display:none;'>"+element.id_Lista+"</label>"+//DISPLAY NONE PENDIENTE
                                 "<h2 class='col-md-12 titleList'>"+element.nombre_Lista+"</h2>"+
                                 "<h6 class='col-md-12 privacyList'> Creada por: "+element.nombre_Usuario+"</h6>"+
                                 "<p class='descrList'>"+element.descrip_Lista+"</p>"+
@@ -797,7 +807,7 @@ function getSearchData(){
             ); 
         }
         else
-            alert("El filtro es muy largo!");
+            alert("¡El filtro es muy largo!");
     }
     if($("#filtUser").prop("checked")){
         goTo = `http://localhost:3000/searching-users/${palBusq}`;
@@ -833,7 +843,7 @@ function getSearchData(){
             ); 
         }
         else
-            alert("El filtro es muy largo!");
+            alert("¡El filtro es muy largo!");
     }
 }
 

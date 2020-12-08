@@ -33,12 +33,9 @@
 
             var id;
             $("body").on("click", ".btnDeleteList",function(){
-                //alert("¡Todo funciona!");
-                //var index = ($( "li" ).index( this ))-9;
                 var parent=$(this).parent();
                 parent=parent.parent();
                 id = $(parent).find(".idLista").text();
-                //alert(id);
                 
             });
             
@@ -52,12 +49,9 @@
             });
             
             $("body").on("click", ".btnSeeList",function(){
-                //alert("¡Todo funciona!");
-                //var index = ($( "li" ).index( this ))-9;
                 var parent=$(this).parent();
                 parent=parent.parent();
                 id = $(parent).find(".idLista").text();
-                //alert(id);
                 verListaPage(id);
                 
             });
