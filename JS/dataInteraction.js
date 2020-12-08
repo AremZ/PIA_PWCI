@@ -92,10 +92,10 @@ function signupUser(){
                     var data=req.responseText;
                     
                 if (data=="1") {
-                    //window.location.replace("http://127.0.0.1:5501/myLists.html");
-                    //Sign in con credenciales.
-                    alert("¡Registro exitoso! Por favor inicia sesión.");
-                    document.getElementById('id01').style.display='none';
+                    document.getElementById('user').value=user;
+                    document.getElementById('pass').value=pass;
+                    signInUser();
+                    alert("¡Registro exitoso! Bienvenido.");
                     }
                 else
                     alert("Usuario o correo ya registrado.")
