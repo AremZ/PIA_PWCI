@@ -43,26 +43,9 @@ function logOut(){
     localStorage.setItem("lista", 0);
     window.location.replace("http://127.0.0.1:" + livePort + "/landing.html");
 }
-/*
-window.onload=function(){
-    var req=new XMLHttpRequest(); 
-req.open('GET','http://localhost:3000/getAllUsers',true);
 
-//Para cuando cambie la situación
-//4-->terminó 200-->ya está
-
-req.onreadystatechange=function(data){
-    if(req.readyState==4&&req.status==200){
-        //retorna json del response a la peticion
-        console.log(data.target.response);
-    }
-};
-
-req.send();
-}*/
-
-var livePort = '5501';
-//var livePort = '5500';
+//var livePort = '5501';
+var livePort = '5500';
 
 function signupUser(){
     let signupForm=document.querySelector('form#formSignUp');
@@ -88,17 +71,16 @@ function signupUser(){
             var req=new XMLHttpRequest();
             req.onreadystatechange = function() {   
                 if(req.readyState==4&&req.status==200){
-                    var data=req.responseText;
-                    
-                if (data=="1") {
-                    document.getElementById('user').value=user;
-                    document.getElementById('pass').value=pass;
-                    signInUser();
-                    alert("¡Registro exitoso! Bienvenido.");
+                    var data=req.responseText;                  
+                    if (data=="1") {
+                        document.getElementById('user').value=user;
+                        document.getElementById('pass').value=pass;
+                        signInUser();
+                        alert("¡Registro exitoso! Bienvenido.");
                     }
-                else
-                    alert("Usuario o correo ya registrado.")
-                    }    
+                    else
+                        alert("Usuario o correo ya registrado.");  
+                } 
             }
             req.open('POST','http://localhost:3000/registroUser');
             req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
@@ -156,12 +138,12 @@ function validateList(mode, action){
     var valido=true;
 
     if(mode==0){
-        if (content.value.length<5 || content.value == ""){
+        if (content.value.length<5 || content.value.length>30 || content.value == ""){
             document.getElementById("nameList").className=document.getElementById("nameList").className+" error";
             valido=false;
         }
 
-        if (content2.value.length<5 || content2.value == ""){
+        if (content2.value.length<5 || content2.value.length>100 || content2.value == ""){
             document.getElementById("descrNewList").className=document.getElementById("descrNewList").className+" error";
             valido=false;
         }
@@ -169,25 +151,26 @@ function validateList(mode, action){
     else{
         valido=true;
         content=document.getElementById("nameObj");
-        if (content.value.length<5 || content.value == ""){
+        if (content.value.length<5 || content.value.length>30  || content.value == ""){
             document.getElementById("nameList").className=document.getElementById("nameList").className+" error";
             valido=false;
         }
         content2=document.getElementById("descrObj");
-        if (content2.value.length<5 || content2.value == "" ){
+        if (content2.value.length<5 || content2.value.length>100 || content2.value == "" ){
             document.getElementById("descrNewList").className=document.getElementById("descrNewList").className+" error";
             valido=false;
         }
-}
-if(valido){
-    if(action==0){
-        createList();    
-        $('#modNewList').modal('toggle');     
     }
-    if(action==1)
-        editLista();
-    content.value="";
-    content2.value="";
+    if(valido){
+        if(action==0){
+            createList();  
+        }
+        if(action==1){
+            editLista();
+        }
+    }
+    else{
+        alert('Por favor, verifique sus datos.')
     }
 }
 
@@ -204,7 +187,6 @@ function createList(){
     var currentUser = localStorage.getItem("currentUser");
 
     if(nameL.length>3&&descL.length>10&&typeC!=0){
-    //console.log(newListForm);
     var req=new XMLHttpRequest();
     req.onreadystatechange = function() {   
         if(req.readyState==4&&req.status==200){
@@ -212,7 +194,10 @@ function createList(){
         
         if (data=="1"){
           alert("¡Lista creada!")
-          refreshListas();
+          refreshListas();    
+          $('#modNewList').modal('toggle');
+          content.value="";
+          content2.value="";   
         }
         else
           alert("¡No se puede repetir lista!")
@@ -389,6 +374,9 @@ function editLista(){
         if (data=="1"){
           alert("¡Lista modificada!")
           getLista(list);
+          $('#modEditList').modal('toggle'); 
+          content.value="";
+          content2.value="";
         }
         else
           alert("Error en el proceso.")
@@ -420,7 +408,7 @@ function addObjeto(){
 
     var currentList = localStorage.getItem("lista");
 
-    if(nameO.length>3&&descO.length>10&&stateO!=0){
+    if(nameO.length > 3 && nameO.length < 30 && descO.length > 10 && descO.length < 100 && stateO != 0){
     //console.log(newListForm);
     var req=new XMLHttpRequest();
     req.onreadystatechange = function() {   
@@ -430,6 +418,9 @@ function addObjeto(){
         if (data=="1"){
           alert("¡Objeto añadido!")
           refreshObjetos();
+          $('#modNewObj').modal('toggle');
+          document.getElementById('nameObj').value="";    
+          document.getElementById('descrObj').value="";     
         }
         else
           alert("¡Problemas con el objeto!")
@@ -487,8 +478,8 @@ function editObjeto(id){
         
         if (data=="1"){
           alert("¡Cambios guardados!")
-          //refreshListas();
           refreshObjetos();
+          $('#modEditObj').modal('toggle'); 
         }
         else
           alert("¡Problemas con el objeto!")
@@ -618,7 +609,7 @@ function deleteMyAccount(){
         }
        
     }
-    req.open('DELETE','http://localhost:3000/bajaMyUser');
+    req.open('PUT','http://localhost:3000/bajaMyUser');
     req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
     req.send(
         JSON.stringify({id:currentUser})
@@ -695,7 +686,7 @@ function getUserListstoProfile(userDisplay){
                         "<div class='col-md-12'> <div class='card myList'> <div class='row no-gutters'>"+
                         "<div class='col-md-2'> <img class='card-img imgList' src='Imagenes/default-image-list.png'>"+
                         "</div> <div class='col-md-10'> <div class='card-body'>"+
-                        "<label class='idLista' style='font-size:10px; display:none;'>"+k.id_Lista+"</label>"+//DISPLAY NONE PENDIENTE
+                        "<label class='idLista' style='font-size:10px; display:none;'>"+k.id_Lista+"</label>"+
                         "<h2 class='col-md-12 titleList'>"+k.nombre_Lista+"</h2>"+
                         "<h6 class='col-md-12 privacyList'>"+tipoMensaje+"</h6>"+
                         "<p class='descrList'>"+k.descrip_Lista+"</p>"+
@@ -712,6 +703,47 @@ function getUserListstoProfile(userDisplay){
        
     }
     req.open('POST','http://localhost:3000/allUserLists');
+    req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+    req.send(
+        JSON.stringify({id:userDisplay})
+    );  
+}
+
+function getUserPubstoProfile(userDisplay){
+    var req=new XMLHttpRequest();
+    req.onreadystatechange = function(data) {   
+        if(req.readyState==4&&req.status==200){
+            var datos=data.target.response;
+            var parse=JSON.parse(datos);
+            //var valor=parse.length;
+            if (parse)
+                parse[0].forEach((k,v)=>{
+                    
+                    if(k.tipo_Lista=="private")
+                        tipoMensaje="Privada"
+                    else
+                        tipoMensaje="Pública"
+                    $("#containerUserLists").append(
+                        "<div class='col-md-12'> <div class='card myList'> <div class='row no-gutters'>"+
+                        "<div class='col-md-2'> <img class='card-img imgList' src='Imagenes/default-image-list.png'>"+
+                        "</div> <div class='col-md-10'> <div class='card-body'>"+
+                        "<label class='idLista' style='font-size:10px; display:none;'>"+k.id_Lista+"</label>"+
+                        "<h2 class='col-md-12 titleList'>"+k.nombre_Lista+"</h2>"+
+                        "<h6 class='col-md-12 privacyList'>"+tipoMensaje+"</h6>"+
+                        "<p class='descrList'>"+k.descrip_Lista+"</p>"+
+                        "<div class='buttons'>"+
+                        "<button class='btnSeeList btn btn-outline-danger barBut'"+
+                        "id='btnSeeList'><i class='fa fa-eye'></i> Ver mi lista</button>"+
+                        "</div></div></div></div></div> </div>"
+
+                    );
+
+
+                });
+        }
+       
+    }
+    req.open('POST','http://localhost:3000/userPubLists');
     req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
     req.send(
         JSON.stringify({id:userDisplay})
@@ -747,7 +779,7 @@ function getSearching(keyword){
                             "<p class='descrList'>"+element.descrip_Lista+"</p>"+
                             "<div class='buttons'>"+
                             "<button class='btnSeeList btn btn-outline-danger barBut'  data-toggle='modal' data-target='#editorNoticia'"+
-                            "type='submit' id='btnSeeList'><i class='fa fa-eye'></i> Ver mi lista</button>"+
+                            "type='submit' id='btnSeeList'><i class='fa fa-eye'></i> Ver lista</button>"+
                             "</div></div></div></div></div> </div>"
     
                         );
@@ -792,7 +824,7 @@ function getSearchData(){
                                 "<p class='descrList'>"+element.descrip_Lista+"</p>"+
                                 "<div class='buttons'>"+
                                 "<button class='btnSeeList btn btn-outline-danger barBut'  data-toggle='modal' data-target='#editorNoticia'"+
-                                "type='submit' id='btnSeeList'><i class='fa fa-eye'></i> Ver mi lista</button>"+
+                                "type='submit' id='btnSeeList'><i class='fa fa-eye'></i> Ver lista</button>"+
                                 "</div></div></div></div></div> </div>"
                             );
                         });
@@ -864,15 +896,17 @@ function isTheOwner(){
                         }
                 });
 
+                var editButts = document.getElementsByClassName("barButObj")
+
                 if(!isOwner){
                     document.getElementById("btnBarList").hidden=true;
-                    document.getElementById("btnEditObj").hidden=true;
-                    document.getElementById("btnDeleteObj").hidden=true;
+
+                    for (var i = 0; i < editButts.length; i ++) {
+                        editButts[i].style.display = 'none';
+                    }
                 }
                 else{
                     document.getElementById("btnBarList").hidden=false;
-                    document.getElementById("btnEditObj").hidden=false;
-                    document.getElementById("btnDeleteObj").hidden=false;
                 }
             }
         }

@@ -1,5 +1,3 @@
-USE pwcidb;
-
 DELIMITER //
 CREATE PROCEDURE sp_getUserData(
 	IN in_userID int
@@ -139,6 +137,16 @@ CREATE PROCEDURE sp_getUserLists(
 BEGIN 
 	SELECT id_Usuario, id_Lista, nombre_Lista, descrip_Lista, tipo_Lista, nombre_Usuario, estado
 	FROM ListxUser WHERE id_Usuario = in_userID;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_getUserPubLists(
+	IN in_userID int
+)
+BEGIN 
+	SELECT id_Usuario, id_Lista, nombre_Lista, descrip_Lista, tipo_Lista, nombre_Usuario, estado
+	FROM ListxUser WHERE id_Usuario = in_userID AND tipo_Lista = 'public';
 END//
 DELIMITER ;
 

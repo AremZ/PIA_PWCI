@@ -32,7 +32,6 @@
             }
 
             getUserData(displayUser);
-            getUserListstoProfile(displayUser);
 
             isLoggedUser(currentUser, displayUser);
 
@@ -63,7 +62,7 @@
     </script>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <!------ Barra de Navegacion & Searchbar ------>
 
@@ -99,7 +98,7 @@
         </div>
     </nav>
 
-    <div class="container-fluid padding">
+    <div class="container-fluid padding wrapper flex-grow-1">
         <div class="row">
             <div class="col-lg-12">
                 <h1 id="datosPerfil">Datos del Perfil</h1>

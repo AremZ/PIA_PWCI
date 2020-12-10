@@ -71,12 +71,37 @@ function cancelarDatos(){
     $("#containerPwd").addClass('col-md-12');
 }
 
-function isLoggedUser(current, logged){
+function isLoggedUser(logged, current){
     if(current != logged){
         document.getElementById("userType").hidden=true;
         document.getElementById("containerPwd").hidden=true;
         document.getElementById("btnModDat").hidden=true;
         document.getElementById("btnDelAcc").hidden=true;
         document.getElementById("imgProfile").hidden=true;
+        getUserPubstoProfile(current);
     }
+    else  
+        getUserListstoProfile(logged);
+}
+
+function cancelObjeto(){
+    $('#modNewObj').modal('toggle');
+    document.getElementById("descrObj").value='';
+    document.getElementById("nameObj").value='';
+}
+
+function toggleEditList(){ 
+    document.getElementById("nameList").value = document.getElementById("titleLista").innerText;
+    document.getElementById("descrNewList").value = document.getElementById("displayDescrList").innerText;
+
+    var type = document.getElementById("tipoLista").innerText
+        
+    if(type == 'Privada'){
+        document.getElementById("tipoListaE").selectedIndex = 0;
+    }
+    else{
+        document.getElementById("tipoListaE").selectedIndex = 1;
+    }
+
+    $('#modEditList').modal('toggle');
 }

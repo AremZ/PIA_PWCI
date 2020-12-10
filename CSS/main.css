@@ -438,13 +438,13 @@ input#nameList:focus, input#nameObj:focus{
     outline: none;
 }
 
-select#tipoLista, select#estadoObjetoE{
+select#tipoLista, select#estadoObjetoE, select#estadoObjetoEd{
     font-family: 'Oswald', sans-serif !important;
     color: var(--Color-2);
     border: 1px solid var(--Color-2);
 }
 
-select#tipoLista:focus, select#estadoObjetoE:focus{
+select#tipoLista:focus, select#estadoObjetoE:focus, select#estadoObjetoEd:hover{
     box-shadow: 0 0 4px var(--Color-2);
 }
 

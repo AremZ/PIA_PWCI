@@ -81,7 +81,7 @@
     </script>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navBar">
         <div class="container-fluid">
@@ -115,7 +115,7 @@
         </div>
     </nav>
 
-    <div class="container-fluid padding">
+    <div class="container-fluid padding wrapper flex-grow-1">
         <div class="row">
             <div class="col-md-2">
                 <img class="card-img imgCover" src="Imagenes/default-image-list.png">
@@ -129,8 +129,8 @@
                     <div class="col-md-12 topBarList" id="btnBarList">
                         <button class="btn btn-outline-danger deleteList" data-toggle="modal" data-target="#confirmDeleteList"
                         id=""><i class="fa fa-trash"></i> Eliminar lista</button>
-                        <button class="btn btn-outline-danger editList" data-toggle="modal" data-target="#modEditList"
-                        onclick=""><i class="fa fa-pencil"></i> Editar lista</button>
+                        <button class="btn btn-outline-danger editList"
+                        onclick="toggleEditList();"><i class="fa fa-pencil"></i> Editar lista</button>
                         <button class="btn btn-outline-danger newObject" data-toggle="modal" data-target="#modNewObj"
                         onclick=""><i class="fa fa-plus-circle"></i> Agregar objeto a la lista</button>
                     </div>
@@ -199,7 +199,7 @@
                            style="float:right" id="cancelsaveList" data-toggle="modal" data-target="#modEditList"><i class="fa fa-times"></i> Cancelar
                        </button>
                        <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" onclick="validateList(0,1)" id="saveList" data-toggle="modal" data-target="#modEditList"><i class="fa fa-floppy-o"></i> Guardar cambios
+                           style="float:right" onclick="validateList(0,1)" id="saveList"><i class="fa fa-floppy-o"></i> Guardar cambios
                        </button>
                     </div>
                 </div>
@@ -260,10 +260,10 @@
                        </form>
                        <hr>
                        <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" id="cancelsaveObj" data-toggle="modal" data-target="#modNewObj"><i class="fa fa-times"></i> Cancelar
+                           style="float:right" id="cancelsaveObj" onclick="cancelObjeto();"><i class="fa fa-times"></i> Cancelar
                        </button>
                        <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" onclick="addObjeto()" id="saveObj" data-toggle="modal" data-target="#modNewObj"><i class="fa fa-check"></i> Crear
+                           style="float:right" onclick="addObjeto()" id="saveObj"><i class="fa fa-check"></i> Crear
                        </button>
                     </div>
                 </div>
@@ -327,7 +327,7 @@
                            style="float:right" id="cancelsaveObj" data-toggle="modal" data-target="#modEditObj"><i class="fa fa-times"></i> Cancelar
                        </button>
                        <button type="button" class="btn btn-outline-danger" 
-                           style="float:right" id="saveObjEdit" data-toggle="modal" data-target="#modEditObj"><i class="fa fa-check"></i> Guardar cambios
+                           style="float:right" id="saveObjEdit"><i class="fa fa-check"></i> Guardar cambios
                        </button>
                     </div>
                 </div>
@@ -384,7 +384,7 @@
             </div>
         </div>
 
-    <footer id="footer">
+    <footer>
         <div class="container-fluid padding">
             <div class="row text-center">
                 <div class="col-12">
